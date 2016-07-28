@@ -17,4 +17,5 @@
 #define GLEW_STATIC
 #pragma comment(lib, "opengl32.lib")
 
+#define method(class, name) {#name, &class::name}
 // TODO: reference additional headers your program requires here

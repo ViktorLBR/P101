@@ -39,7 +39,7 @@
 
 class SceneOpenGL
 {
-    public:
+public:
 
     SceneOpenGL(std::string titreFenetre, int largeurFenetre, int hauteurFenetre);
     ~SceneOpenGL();
@@ -49,7 +49,8 @@ class SceneOpenGL
     void bouclePrincipale();
 
 
-    private:
+
+private:
 
     std::string m_titreFenetre;
     int m_largeurFenetre;
