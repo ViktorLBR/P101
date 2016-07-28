@@ -9,6 +9,10 @@
 
 #include <stdio.h>
 #include <tchar.h>
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
+#include "lunar.h"
 
 #define GLEW_STATIC
 #pragma comment(lib, "opengl32.lib")
