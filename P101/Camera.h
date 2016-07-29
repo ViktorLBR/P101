@@ -19,7 +19,8 @@
 
 class Camera
 {
-    public:
+public:
+
 
     Camera();
     Camera(glm::vec3 position, glm::vec3 pointCible, glm::vec3 axeVertical, float sensibilite, float vitesse);
@@ -36,10 +37,11 @@ class Camera
     float getVitesse() const;
 
     void setSensibilite(float sensibilite);
+	int setSensibilite(lua_State* L);
     void setVitesse(float vitesse);
+	int setVitesse(lua_State* L);
 
-
-    private:
+private:
 
     float m_phi;
     float m_theta;

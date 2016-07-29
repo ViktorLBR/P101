@@ -6,7 +6,6 @@
 
 using namespace glm;
 
-
 // Constructeurs et Destructeur
 
 Camera::Camera() : m_phi(0.0), m_theta(0.0), m_orientation(), m_axeVertical(0, 0, 1), m_deplacementLateral(), m_position(), m_pointCible(), m_sensibilite(0.0), m_vitesse(0.0)
