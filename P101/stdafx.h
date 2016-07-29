@@ -9,8 +9,14 @@
 
 #include <stdio.h>
 #include <tchar.h>
+extern "C" {
+#include "lua.hpp"
+}
+#include "lunar.h"
 
 #define GLEW_STATIC
 #pragma comment(lib, "opengl32.lib")
+#pragma comment(lib, "lua53.lib")
 
+#define method(class, name) {#name, &class::name}
 // TODO: reference additional headers your program requires here
