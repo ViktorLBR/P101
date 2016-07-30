@@ -90,6 +90,11 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="lunar.h" />
+    <ClInclude Include="sbl 1.0\sbl_element.h" />
+    <ClInclude Include="sbl 1.0\sbl_env.h" />
+    <ClInclude Include="sbl 1.0\sbl_hub.h" />
+    <ClInclude Include="sbl 1.0\sbl_interface_hub.h" />
+    <ClInclude Include="sbl 1.0\sbl_main.h" />
     <ClInclude Include="SceneOpenGL.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="stdafx.h" />
@@ -102,6 +107,10 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="P101 (moteur).cpp" />
+    <ClCompile Include="sbl 1.0\sbl_env.cpp" />
+    <ClCompile Include="sbl 1.0\sbl_hub.cpp" />
+    <ClCompile Include="sbl 1.0\sbl_interface_hub.cpp" />
+    <ClCompile Include="sbl 1.0\sbl_main.cpp" />
     <ClCompile Include="SceneOpenGL.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -109,6 +118,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Texture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sbl 1.0\sbl_ext1.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
