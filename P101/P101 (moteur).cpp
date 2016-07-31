@@ -25,6 +25,8 @@ int main(int argc, char **argv)
 
 	SceneOpenGL scene("OpenGL", 1280, 720);
 
+	EnvLua * env = new EnvLua();
+
 
 	// Initialisation de la scène
 

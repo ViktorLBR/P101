@@ -34,6 +34,7 @@ typedef pair<sblAdr, pElement> mappNadrElement;
 #include "sbl_hub.h"
 
 extern sblHub * hub_lua;
+
 #include "sbl_interface_hub.h"
 
 #endif

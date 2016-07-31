@@ -57,20 +57,26 @@
     <ClInclude Include="lunar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sbl 1.0\sbl_element.h">
+    <ClInclude Include="sbl_main.h">
       <Filter>Header Files\SBL 1.0</Filter>
     </ClInclude>
-    <ClInclude Include="sbl 1.0\sbl_env.h">
+    <ClInclude Include="sbl_interface_hub.h">
       <Filter>Header Files\SBL 1.0</Filter>
     </ClInclude>
-    <ClInclude Include="sbl 1.0\sbl_hub.h">
+    <ClInclude Include="sbl_hub.h">
       <Filter>Header Files\SBL 1.0</Filter>
     </ClInclude>
-    <ClInclude Include="sbl 1.0\sbl_interface_hub.h">
+    <ClInclude Include="sbl_env.h">
       <Filter>Header Files\SBL 1.0</Filter>
     </ClInclude>
-    <ClInclude Include="sbl 1.0\sbl_main.h">
+    <ClInclude Include="sbl_element.h">
       <Filter>Header Files\SBL 1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="bloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -101,22 +107,28 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sbl 1.0\sbl_env.cpp">
+    <ClCompile Include="sbl_env.cpp">
       <Filter>Source Files\SBL 1.0</Filter>
     </ClCompile>
-    <ClCompile Include="sbl 1.0\sbl_hub.cpp">
+    <ClCompile Include="sbl_hub.cpp">
       <Filter>Source Files\SBL 1.0</Filter>
     </ClCompile>
-    <ClCompile Include="sbl 1.0\sbl_interface_hub.cpp">
+    <ClCompile Include="sbl_interface_hub.cpp">
       <Filter>Source Files\SBL 1.0</Filter>
     </ClCompile>
-    <ClCompile Include="sbl 1.0\sbl_main.cpp">
+    <ClCompile Include="sbl_main.cpp">
       <Filter>Source Files\SBL 1.0</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="sbl 1.0\sbl_ext1.lua">
+    <None Include="sbl_ext1.lua">
       <Filter>Resource Files\SBLext1</Filter>
+    </None>
+    <None Include="test.lua">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="config.lua">
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
 </Project>

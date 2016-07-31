@@ -19,4 +19,11 @@ extern "C" {
 #pragma comment(lib, "lua53.lib")
 
 #define method(class, name) {#name, &class::name}
+
+#include "sbl_main.h"
+
+#include "bloc.h"
+
+#include "map.h"
+
 // TODO: reference additional headers your program requires here

@@ -14,8 +14,16 @@ public:
 	EnvLua(lua_State * etat);
 	~EnvLua() { lua_close(etat); }
 
-	void Exec(string fichier) { luaL_dofile(etat, fichier.c_str()); }
-	lua_State * getEnv() { return etat; }
+	void Exec(string fichier)
+	{
+		luaL_dofile(etat, fichier.c_str());
+	}
+
+	lua_State * getEnv()
+	{
+		return etat;
+	}
+
 	void Enregistrer(string nom, lua_CFunction fonction)
 	{
 		lua_register(etat, nom.c_str(), fonction);
