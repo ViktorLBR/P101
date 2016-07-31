@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\SBL 1.0">
+      <UniqueIdentifier>{0d64fe9d-7950-4d47-a662-882e9e4354d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SBL 1.0">
+      <UniqueIdentifier>{258f8f32-22c6-4b2e-9e75-65df3cafad47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\SBLext1">
+      <UniqueIdentifier>{3bcc53b2-0bff-4e56-b648-3865699adf0a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -48,6 +57,27 @@
     <ClInclude Include="lunar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sbl_main.h">
+      <Filter>Header Files\SBL 1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="sbl_interface_hub.h">
+      <Filter>Header Files\SBL 1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="sbl_hub.h">
+      <Filter>Header Files\SBL 1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="sbl_env.h">
+      <Filter>Header Files\SBL 1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="sbl_element.h">
+      <Filter>Header Files\SBL 1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="bloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -77,5 +107,28 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sbl_env.cpp">
+      <Filter>Source Files\SBL 1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="sbl_hub.cpp">
+      <Filter>Source Files\SBL 1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="sbl_interface_hub.cpp">
+      <Filter>Source Files\SBL 1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="sbl_main.cpp">
+      <Filter>Source Files\SBL 1.0</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sbl_ext1.lua">
+      <Filter>Resource Files\SBLext1</Filter>
+    </None>
+    <None Include="test.lua">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="config.lua">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

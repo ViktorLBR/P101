@@ -1,0 +1,9 @@
+Version 0.1.1 :
+ - support de la sbl 1.0
+ - implémentation du lua
+ - classe BlocMap et Map pour l'environnement
+
+Version 0.1.0 :
+ - release initiale
+ - support 3d (opengl)
+ - bibliothèques lua non implémentées

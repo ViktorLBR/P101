@@ -141,42 +141,35 @@ void SceneOpenGL::bouclePrincipale()
     modelview = mat4(1.0);
 
 
+	// Map
+
+	EnvLua * env = new EnvLua();
+	P101_Cubix::BlocMap * p_map = new P101_Cubix::BlocMap();
+	Bloc * p_bloc_test = new Bloc();
+
+	p_bloc_test->nom = "bloc";
+	p_bloc_test->texture = "DATA/Textures/alpha.png";
+	p_bloc_test->fragmentShader = "DATA/Shaders/texture.frag";
+	p_bloc_test->vertexShader = "DATA/Shaders/texture.vert";
+
+	hub_lua = new sblHub();
+
+	hub_lua->lib_ajouter("bloc", p_bloc_test);
+	hub_lua->lib_ajouter("map", p_map);
+	sblAdr map_nadr = hub_lua->create("map");
+	delete p_map;
+	hub_lua->charger(map_nadr);
+	p_map = reinterpret_cast<P101_Cubix::BlocMap *>(hub_lua->getcible());
+
+	env->Exec("config.lua");
+
+
+
     // Caméra mobile
 
     Camera camera(vec3(3, 3, 3), vec3(0, 0, 0), vec3(0, 1, 0), 1, 0.5);
     m_input.afficherPointeur(false);
     m_input.capturerPointeur(true);
-
-
-    // Vertices
-
-    float vertices[] = {-10, 0, -10,   10, 0, -10,   10, 0, 10,    // Triangle 1
-                        -10, 0, -10,   -10, 0, 10,   10, 0, 10};   // Triangle 2
-
-
-
-    // Coordonnées de texture
-
-    float coordTexture[] = {0, 0,   7, 0,   7, 7,     // Triangle 1
-                            0, 0,   0, 7,   7, 7};    // Triangle 2
-
-
-    // Texture
-
-    Texture texture("Textures/Herbe.jpg");
-    texture.charger();
-
-
-    // Shader
-
-    Shader shaderTexture("Shaders/texture.vert", "Shaders/texture.frag");
-    shaderTexture.charger();
-
-
-    // Objet Caisse
-
-    Caisse caisse(2.0, "Shaders/texture.vert", "Shaders/texture.frag", "Textures/Caisse2.jpg");
-
 
     // Boucle principale
 
@@ -206,74 +199,7 @@ void SceneOpenGL::bouclePrincipale()
 
         camera.lookAt(modelview);
 
-
-        // Sauvegarde de la matrice modelview
-
-        mat4 sauvegardeModelview = modelview;
-
-
-            // Translation pour positionner le cube
-
-            modelview = translate(modelview, vec3(0, 1, 0));
-
-
-            // Affichage du cube
-
-            caisse.afficher(projection, modelview);
-
-
-        // Restauration de la matrice
-
-        modelview = sauvegardeModelview;
-
-
-        // Activation du shader
-
-        glUseProgram(shaderTexture.getProgramID());
-
-
-            // Envoi des vertices
-
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vertices);
-            glEnableVertexAttribArray(0);
-
-
-            // Envoi des coordonnées de texture
-
-            glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, coordTexture);
-            glEnableVertexAttribArray(2);
-
-
-            // Envoi des matrices
-
-            glUniformMatrix4fv(glGetUniformLocation(shaderTexture.getProgramID(), "projection"), 1, GL_FALSE, value_ptr(projection));
-            glUniformMatrix4fv(glGetUniformLocation(shaderTexture.getProgramID(), "modelview"), 1, GL_FALSE, value_ptr(modelview));
-
-
-            // Verrouillage de la texture
-
-            glBindTexture(GL_TEXTURE_2D, texture.getID());
-
-
-            // Rendu
-
-            glDrawArrays(GL_TRIANGLES, 0, 6);
-
-
-            // Déverrouillage de la texture
-
-            glBindTexture(GL_TEXTURE_2D, 0);
-
-
-            // Désactivation des tableaux
-
-            glDisableVertexAttribArray(2);
-            glDisableVertexAttribArray(0);
-
-
-        // Désactivation du shader
-
-        glUseProgram(0);
+		p_map->afficher(projection, modelview);
 
 
         // Actualisation de la fenêtre

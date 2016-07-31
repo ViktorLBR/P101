@@ -85,11 +85,18 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bloc.h" />
     <ClInclude Include="Caisse.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="lunar.h" />
+    <ClInclude Include="map.h" />
+    <ClInclude Include="sbl_element.h" />
+    <ClInclude Include="sbl_env.h" />
+    <ClInclude Include="sbl_hub.h" />
+    <ClInclude Include="sbl_interface_hub.h" />
+    <ClInclude Include="sbl_main.h" />
     <ClInclude Include="SceneOpenGL.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="stdafx.h" />
@@ -102,6 +109,10 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="P101 (moteur).cpp" />
+    <ClCompile Include="sbl_env.cpp" />
+    <ClCompile Include="sbl_hub.cpp" />
+    <ClCompile Include="sbl_interface_hub.cpp" />
+    <ClCompile Include="sbl_main.cpp" />
     <ClCompile Include="SceneOpenGL.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -109,6 +120,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Texture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.lua" />
+    <None Include="sbl_ext1.lua" />
+    <None Include="test.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
