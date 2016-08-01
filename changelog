@@ -1,4 +1,8 @@
-Version 0.1.1 :
+Version 0.1.1b :
+ - réagencement fichiers
+ - support ext0
+
+Version 0.1.1a :
  - support de la sbl 1.0
  - implémentation du lua
  - classe BlocMap et Map pour l'environnement
