@@ -1,8 +1,9 @@
 #include "stdafx.h"
 
+using namespace sbl;
+
 #ifndef SBL_HUB
 #define SBL_HUB
-
 // -----
 // Classe
 // -----
@@ -10,7 +11,7 @@
 class sblHub
 {
 public:
-
+	enum mode_callback{ CPP, LUA } mode_call;
 
 	// -----
 	// Destructeur & Constructeur
@@ -23,23 +24,25 @@ public:
 	// Fonctions lua
 	// -----
 	int charger(lua_State * L);
-	void charger(sblAdr nadr);
+	void charger(sblAdr nadr); // C++
 
 	int fermer(lua_State * L);
-	void fermer(void);
+	void fermer(void); // C++
 
 	int getcible(lua_State * L);
-	pElement getcible(void);
+	pElement getcible(void); // C++
 	
 	int set(lua_State * L);
 	
 	int get(lua_State * L);
 	
 	int exec(lua_State * L);
-	
+
+	int getnom(lua_State * L);
+	sblElement * getnom(string nom); // C++
 	
 	int create(lua_State * L);
-	sblAdr create(string nom);
+	sblAdr create(string nom); // C++
 
 
 	// -----
