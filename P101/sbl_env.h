@@ -4,6 +4,7 @@
 #define P101_SBL_MAIN
 
 using namespace std;
+using namespace sbl;
 
 
 class EnvLua
@@ -50,5 +51,7 @@ protected:
 		}
 	}
 };
+
+extern EnvLua * env;
 
 #endif

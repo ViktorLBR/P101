@@ -109,6 +109,26 @@ int sblHub::exec(lua_State * L)
 	return 0;
 }
 
+int sblHub::getnom(lua_State * L)
+{
+	sblElement * p = getnom(lua_tostring(L, 1));
+	if (p != NULL)
+	{
+		sbl::sbl_push(L, p->getNadr());
+		return 1;
+	}
+	return 0;
+}
+
+sblElement * sblHub::getnom(string nom)
+{
+	sblElement * p = NULL;
+	for each(pair<sblAdr, pElement> pr in bd_element)
+		if (pr.second->nom == nom)
+			p = pr.second;
+	return p;
+}
+
 int sblHub::create(lua_State * L)
 {
 	string nom = lua_tostring(L, 1);
@@ -122,7 +142,10 @@ sblAdr sblHub::create(string nom)
 	sblAdr nadr = nextFreeNadr();
 	pElement buffer = bd_nom_element.at(nom)->Copie();
 	if (buffer != NULL)
+	{
+		buffer->setNadr(nadr);
 		bd_element.emplace(nadr, buffer);
+	}
 	return nadr;
 }
 

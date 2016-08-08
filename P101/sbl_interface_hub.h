@@ -4,6 +4,7 @@
 #define SBL_INT_HUB
 
 using namespace std;
+using namespace sbl;
 
 // -----
 // Interface

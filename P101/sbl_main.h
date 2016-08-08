@@ -1,5 +1,8 @@
 #include "stdafx.h"
 
+namespace sbl {};
+using namespace sbl;
+
 #ifndef SBL_MAIN
 #define SBL_MAIN
 
