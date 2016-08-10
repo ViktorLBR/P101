@@ -157,13 +157,7 @@ void SceneOpenGL::bouclePrincipale()
 
 	hub_lua->ajouter_element(this);
 	hub_lua->lib_ajouter("bloc", p_bloc_test);
-	hub_lua->lib_ajouter("map", p_map);/*
-	sblAdr map_nadr = hub_lua->create("map");
-	delete p_map;
-	hub_lua->charger(map_nadr);
-	p_map = reinterpret_cast<P101_Cubix::BlocMap *>(hub_lua->getcible());
-
-	this->pushdisp(p_map);*/
+	hub_lua->lib_ajouter("map", p_map);
 
 	env->Exec("config.lua");
 

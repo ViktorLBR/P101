@@ -25,6 +25,9 @@
     <Filter Include="Header Files\GEN">
       <UniqueIdentifier>{3893c1b2-5509-4168-b672-464822694f08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\OGLI">
+      <UniqueIdentifier>{98692718-aec5-4244-b274-30b8a250b726}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -86,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="gen_3delement.h">
       <Filter>Header Files\GEN</Filter>
+    </ClInclude>
+    <ClInclude Include="ogli_main.h">
+      <Filter>Header Files\OGLI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -93,6 +93,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="lunar.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="ogli_main.h" />
     <ClInclude Include="sbl_boost.h" />
     <ClInclude Include="sbl_element.h" />
     <ClInclude Include="sbl_env.h" />
