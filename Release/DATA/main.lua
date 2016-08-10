@@ -1,2 +1,2 @@
-dofile('DATA/bloc.lua')
-dofile('DATA/map.lua')
+dofile('DATA/Bloc/bloc.lua')
+dofile('DATA/Map/map.lua')

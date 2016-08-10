@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include "sbl_main.h"
+
 using namespace std;
 using namespace sbl;
 
@@ -114,9 +116,9 @@ namespace sbl
 
 			sbl::sbl_push(L, args);
 			hub_lua->charger(p->getNadr());
-			
+
 			lua_call(L, nbarg, 0);
-			
+
 			if (ndrbuffer != NULL)
 				hub_lua->charger(ndrbuffer);
 			else

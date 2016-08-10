@@ -22,6 +22,9 @@
     <Filter Include="Resource Files\SBLext1">
       <UniqueIdentifier>{3bcc53b2-0bff-4e56-b648-3865699adf0a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GEN">
+      <UniqueIdentifier>{3893c1b2-5509-4168-b672-464822694f08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -78,6 +81,12 @@
     <ClInclude Include="map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sbl_boost.h">
+      <Filter>Header Files\SBL 1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="gen_3delement.h">
+      <Filter>Header Files\GEN</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -117,6 +126,12 @@
       <Filter>Source Files\SBL 1.0</Filter>
     </ClCompile>
     <ClCompile Include="sbl_main.cpp">
+      <Filter>Source Files\SBL 1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="sbl_element.cpp">
+      <Filter>Source Files\SBL 1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="sbl_boost.cpp">
       <Filter>Source Files\SBL 1.0</Filter>
     </ClCompile>
   </ItemGroup>

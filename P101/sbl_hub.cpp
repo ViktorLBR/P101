@@ -158,3 +158,10 @@ void sblHub::lib_ajouter(string nom, pElement pelement)
 {
 	bd_nom_element.emplace(nom, pelement->Copie());
 }
+
+void sblHub::ajouter_element(pElement pelement)
+{
+	sblAdr nadr = nextFreeNadr();
+	pelement->setNadr(nadr);
+	bd_element.emplace(nadr, pelement);
+}

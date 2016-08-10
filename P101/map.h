@@ -1,6 +1,8 @@
 #include "stdafx.h"
+#include "gen_3delement.h"
 
 using namespace std;
+using namespace gen;
 
 
 #ifndef MAP_P101
@@ -9,7 +11,7 @@ using namespace std;
 namespace P101_Cubix
 {
 
-	class BlocMap : public sblElement
+	class BlocMap : public gen::Element3D
 	{
 	public:
 		BlocMap()
@@ -29,14 +31,13 @@ namespace P101_Cubix
 			index_bloc.emplace(pbloc->nom, reinterpret_cast<Bloc *>(pbloc));
 		}
 
-		void afficher(glm::mat4 &projection, glm::mat4 &modelview)
+		virtual void l_afficher(glm::mat4 &projection, glm::mat4 &modelview)
 		{
-			glm::mat4 lmodelview = glm::translate(modelview, coord);
 			for (int x = 0; x < 100; x++)
 				for (int y = 0; y < 100; y++)
 					for (int z = 0; z < 100; z++)
 						if (index_map[x][y][z] != NULL)
-							index_map[x][y][z]->afficher(glm::vec3(x / 2, y / 2, z / 2) + coord, projection, lmodelview);
+							index_map[x][y][z]->afficher(glm::vec3(x / 2, y / 2, z / 2) + coord, projection, modelview);
 		}
 
 		void ajouterBlocMap(string nom, glm::vec3 cd)
@@ -61,14 +62,13 @@ namespace P101_Cubix
 				return 0;
 			}
 
-			return 0;
+			return Element3D::exec(nfonc, L);
 		}
 
 		virtual sblElement * Copie()
 		{
 			BlocMap * p = new BlocMap();
 			HCopie(p);
-			sblElement::HCopie(p);
 			return p;
 		}
 
@@ -76,11 +76,16 @@ namespace P101_Cubix
 	protected:
 		map<string, Bloc *> index_bloc;
 		Bloc * index_map[100][100][100];
-		glm::vec3 coord;
 
 		virtual void HCopie(BlocMap * p)
 		{
+			p->index_bloc = index_bloc;
+			for (int i = 0; i < 100; i++)
+				for (int j = 0; j < 100; j++)
+					for (int k = 0; k < 100; k++)
+						p->index_map[i][j][k] = index_map[i][j][k];
 
+			Element3D::HCopie(p);
 		}
 	};
 

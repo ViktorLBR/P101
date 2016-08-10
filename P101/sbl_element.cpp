@@ -61,7 +61,7 @@ void sblCElement::HCopie(sblCElement * p)
 	{
 		buffer = new lua_Callback(pr.second);
 		p->map_fonctions.emplace(pr.first, buffer);
-	}
+	}*/
 
-	sblElement::HCopie(p);*/
+	sblElement::HCopie(p);
 }

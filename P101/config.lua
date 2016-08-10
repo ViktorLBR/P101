@@ -1,5 +1,11 @@
-map_nadr = sbl_getcible()
---dofile('.\DATA\main.lua')
+opengl_s = sbl_getnom('SceneOpenGL')
+map_nadr = sbl_create('map')
+
+sbl_charger(opengl_s)
+
+sbl_exec('pushdisp', map_nadr)
+
+sbl_fermer()
 
 
 bloc_nadr = sbl_create('bloc')

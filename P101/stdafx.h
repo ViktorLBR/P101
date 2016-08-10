@@ -22,6 +22,8 @@ extern "C" {
 
 #include "sbl_main.h"
 
+#include "gen_3delement.h"
+
 #include "bloc.h"
 
 #include "map.h"

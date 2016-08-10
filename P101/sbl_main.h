@@ -20,7 +20,10 @@ extern "C" {
 #include <iostream>
 #include <map>
 
+lua_State * getEnv();
+
 #pragma comment(lib, "lua53.lib")
+
 
 typedef long unsigned int sblAdr;
 typedef int (flua)(lua_State *);
@@ -39,5 +42,4 @@ typedef pair<sblAdr, pElement> mappNadrElement;
 extern sblHub * hub_lua;
 
 #include "sbl_interface_hub.h"
-
 #endif

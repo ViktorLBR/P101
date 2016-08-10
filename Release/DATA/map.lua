@@ -1,5 +1,0 @@
-placebloc('bloc_metal',25,25,25)
-placebloc('bloc_metal',10,25,32)
-placebloc('bloc_caisse',25,65,75)
-placebloc('bloc_metal',15,39,15)
-placebloc('bloc_caisse',15,87,35)

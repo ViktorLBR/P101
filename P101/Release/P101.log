@@ -1,9 +1,34 @@
-﻿Build started 08/08/2016 19:31:41.
+﻿Build started 10/08/2016 20:47:42.
      1>Project "E:\Projets GitHub\P101-clone\P101\P101\P101.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\P101.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "P101 (moteur).cpp" SceneOpenGL.cpp
+         P101 (moteur).cpp
+     1>e:\projets github\p101-clone\p101\p101\SceneOpenGL.h(87): warning C4244: 'initializing' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
+         SceneOpenGL.cpp
+     1>e:\projets github\p101-clone\p101\p101\SceneOpenGL.h(87): warning C4244: 'initializing' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Projets GitHub\P101-clone\P101\Release\P101.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:.\lib lua53.lib SDL2.lib SDL2main.lib SDL2test.lib SDL2_image.lib glew32s.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Projets GitHub\P101-clone\P101\Release\P101.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Projets GitHub\P101-clone\P101\Release\P101.lib" /MACHINE:X86 /SAFESEH Release\Caisse.obj
+         Release\Camera.obj
+         Release\Cube.obj
+         Release\Input.obj
+         "Release\P101 (moteur).obj"
+         Release\sbl_boost.obj
+         Release\sbl_element.obj
+         Release\sbl_env.obj
+         Release\sbl_hub.obj
+         Release\sbl_interface_hub.obj
+         Release\sbl_main.obj
+         Release\SceneOpenGL.obj
+         Release\Shader.obj
+         Release\stdafx.obj
+         Release\Texture.obj
+     1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+         Generating code
+         Finished generating code
+     1>glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'E:\Projets GitHub\P101-clone\P101\Release\vc120.pdb'; linking object as if no debug info
          P101.vcxproj -> E:\Projets GitHub\P101-clone\P101\Release\P101.exe
      1>Done Building Project "E:\Projets GitHub\P101-clone\P101\P101\P101.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.06
+Time Elapsed 00:00:01.87

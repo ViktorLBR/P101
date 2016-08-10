@@ -49,6 +49,9 @@ public:
 	// Gestion librairie
 	// -----
 	void lib_ajouter(string nom, pElement pelement);
+
+	void ajouter_element(pElement pelement);
+
 	sblElement * getElement(sblAdr nadr)
 	{
 		return bd_element.at(nadr);

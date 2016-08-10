@@ -14,7 +14,7 @@ SceneOpenGL::SceneOpenGL(std::string titreFenetre, int largeurFenetre, int haute
                                                                                              m_hauteurFenetre(hauteurFenetre), m_fenetre(0), m_contexteOpenGL(0),
                                                                                              m_input()
 {
-
+	nom = "SceneOpenGL";
 }
 
 
@@ -144,9 +144,10 @@ void SceneOpenGL::bouclePrincipale()
 	// Map
 
 	EnvLua * env = new EnvLua();
-	P101_Cubix::BlocMap * p_map = new P101_Cubix::BlocMap();
-	Bloc * p_bloc_test = new Bloc();
 
+	P101_Cubix::BlocMap * p_map = new P101_Cubix::BlocMap();
+
+	Bloc * p_bloc_test = new Bloc();
 	p_bloc_test->nom = "bloc";
 	p_bloc_test->texture = "DATA/Textures/alpha.png";
 	p_bloc_test->fragmentShader = "DATA/Shaders/texture.frag";
@@ -154,14 +155,18 @@ void SceneOpenGL::bouclePrincipale()
 
 	hub_lua = new sblHub();
 
+	hub_lua->ajouter_element(this);
 	hub_lua->lib_ajouter("bloc", p_bloc_test);
-	hub_lua->lib_ajouter("map", p_map);
+	hub_lua->lib_ajouter("map", p_map);/*
 	sblAdr map_nadr = hub_lua->create("map");
 	delete p_map;
 	hub_lua->charger(map_nadr);
 	p_map = reinterpret_cast<P101_Cubix::BlocMap *>(hub_lua->getcible());
 
+	this->pushdisp(p_map);*/
+
 	env->Exec("config.lua");
+
 
 
 
@@ -176,45 +181,40 @@ void SceneOpenGL::bouclePrincipale()
     while(!m_input.terminer())
     {
         // On définit le temps de début de boucle
-
         debutBoucle = SDL_GetTicks();
 
 
         // Gestion des évènements
-
         m_input.updateEvenements();
-
         if(m_input.getTouche(SDL_SCANCODE_ESCAPE))
            break;
-
         camera.deplacer(m_input);
 
 
         // Nettoyage de l'écran
-
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
         // Gestion de la caméra
-
         camera.lookAt(modelview);
 
-		p_map->afficher(projection, modelview);
+		// Affichage
+		for each(gen::Element3D * p in liste_affichage)
+		{
+			p->afficher(projection, modelview);
+		}
 
 
         // Actualisation de la fenêtre
-
         SDL_GL_SwapWindow(m_fenetre);
 
 
         // Calcul du temps écoulé
-
         finBoucle = SDL_GetTicks();
         tempsEcoule = finBoucle - debutBoucle;
 
 
         // Si nécessaire, on met en pause le programme
-
         if(tempsEcoule < frameRate)
             SDL_Delay(frameRate - tempsEcoule);
     }

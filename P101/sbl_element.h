@@ -79,7 +79,13 @@ public:
 	template<class Args>bool execFonction(string nomc, Args args)
 	{
 		if (isFonction(nomc))
-			return map_fonctions.at(nomc).exec(env->getEnv(), this, args);
+			return map_fonctions.at(nomc).exec(getEnv(), this, args);
+		return false;
+	}
+	bool execFonction(string nomc)
+	{
+		if (isFonction(nomc))
+			return map_fonctions.at(nomc).exec(getEnv(), this, 0);
 		return false;
 	}
 
