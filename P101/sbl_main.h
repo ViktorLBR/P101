@@ -28,6 +28,8 @@ lua_State * getEnv();
 typedef long unsigned int sblAdr;
 typedef int (flua)(lua_State *);
 
+extern lua_State * L_gen;
+
 #include "sbl_element.h"
 
 typedef sblElement * pElement;

@@ -40,7 +40,11 @@ public:
 
 	int getnom(lua_State * L);
 	sblElement * getnom(string nom); // C++
-	
+	sblElement * getnadr(sblAdr nadr)
+	{
+		return bd_element.at(nadr);
+	}
+
 	int create(lua_State * L);
 	sblAdr create(string nom); // C++
 

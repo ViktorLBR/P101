@@ -28,6 +28,12 @@ namespace sbl
 		lua_pushstring(L, value.c_str());
 	}
 
+	template < class T>
+	void sbl_pushfrag(lua_State * L, bool value)
+	{
+		lua_pushboolean(L, value);
+	}
+
 	template<class T>
 	void sbl_push(lua_State * L, T value) {
 		sbl_pushfrag<T>(L, value);  // affichage du dernier élément
@@ -130,6 +136,8 @@ namespace sbl
 		int nbarg;
 		string nomlua;
 	};
+
+
 };
 
 

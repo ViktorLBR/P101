@@ -28,6 +28,9 @@
     <Filter Include="Header Files\OGLI">
       <UniqueIdentifier>{98692718-aec5-4244-b274-30b8a250b726}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GEN">
+      <UniqueIdentifier>{0954cec7-6be4-4543-9da9-68de9b85065d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -93,6 +96,27 @@
     <ClInclude Include="ogli_main.h">
       <Filter>Header Files\OGLI</Filter>
     </ClInclude>
+    <ClInclude Include="ogli_slot.h">
+      <Filter>Header Files\OGLI</Filter>
+    </ClInclude>
+    <ClInclude Include="ogli_coord.h">
+      <Filter>Header Files\OGLI</Filter>
+    </ClInclude>
+    <ClInclude Include="ogli_hub.h">
+      <Filter>Header Files\OGLI</Filter>
+    </ClInclude>
+    <ClInclude Include="gen_boost.h">
+      <Filter>Header Files\GEN</Filter>
+    </ClInclude>
+    <ClInclude Include="gen_main.h">
+      <Filter>Header Files\GEN</Filter>
+    </ClInclude>
+    <ClInclude Include="Input_Hard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ogli_lutin.h">
+      <Filter>Header Files\OGLI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -139,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="sbl_boost.cpp">
       <Filter>Source Files\SBL 1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="gen_boost.cpp">
+      <Filter>Source Files\GEN</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

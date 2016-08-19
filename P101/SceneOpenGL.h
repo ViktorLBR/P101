@@ -29,10 +29,10 @@
 #include <string>
 #include "Shader.h"
 #include "Cube.h"
-#include "Input.h"
 #include "Texture.h"
 #include "Caisse.h"
 #include "Camera.h"
+#include "Input.h"
 
 
 // Classe
@@ -42,6 +42,7 @@ class SceneOpenGL : public sblCElement
 protected:
 
 	vector<gen::Element3D *> liste_affichage;
+	map<string, ogli::BLutin *> liste_2D;
 
 public:
 
@@ -68,6 +69,18 @@ public:
 			}
 		}
 		return false;
+	}
+
+	bool push2D(string nom, ogli::BLutin * p)
+	{
+		if (liste_2D.count(nom) != 0) return false;
+		liste_2D.emplace(nom, p);
+	}
+
+	bool pop2D(string nom)
+	{
+		if (liste_2D.count(nom) == 0) return false;
+		liste_2D.erase(nom);
 	}
 
 	virtual int set(string nvar, lua_State * L)
@@ -100,6 +113,16 @@ public:
 					return 0;
 				}
 			}
+			return 0;
+		}
+		if (nfonc == "push2D")
+		{
+			push2D(lua_tostring(L, 2), sbl::convert<ogli::BLutin>(hub_lua->getnadr(lua_tonumber(L, 3))));
+			return 0;
+		}
+		if (nfonc == "pop2D")
+		{
+			pop2D(lua_tostring(L, 2));
 			return 0;
 		}
 

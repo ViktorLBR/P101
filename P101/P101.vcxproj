@@ -90,10 +90,17 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="gen_3delement.h" />
+    <ClInclude Include="gen_boost.h" />
+    <ClInclude Include="gen_main.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Input_Hard.h" />
     <ClInclude Include="lunar.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="ogli_coord.h" />
+    <ClInclude Include="ogli_hub.h" />
+    <ClInclude Include="ogli_lutin.h" />
     <ClInclude Include="ogli_main.h" />
+    <ClInclude Include="ogli_slot.h" />
     <ClInclude Include="sbl_boost.h" />
     <ClInclude Include="sbl_element.h" />
     <ClInclude Include="sbl_env.h" />
@@ -110,6 +117,7 @@
     <ClCompile Include="Caisse.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="gen_boost.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="P101 (moteur).cpp" />
     <ClCompile Include="sbl_boost.cpp" />

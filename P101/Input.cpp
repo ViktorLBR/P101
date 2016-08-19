@@ -121,8 +121,9 @@ void Input::afficherPointeur(bool reponse) const
 }
 
 
-void Input::capturerPointeur(bool reponse) const
+void Input::capturerPointeur(bool reponse)
 {
+	pointeurCapture = reponse;
     if(reponse)
         SDL_SetRelativeMouseMode(SDL_TRUE);
 
