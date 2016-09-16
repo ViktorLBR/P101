@@ -63,11 +63,6 @@ class sblCElement : public sblElement
 {
 public:
 
-	virtual int set(string nvar, lua_State * L);
-	virtual int get(string nvar, lua_State * L);
-	virtual int exec(string nfonc, lua_State * L);
-	virtual sblElement * Copie();
-
 	bool isFonction(string nomc);
 	virtual bool enregFonction(string nomc, string nomlua, int arg)
 	{
@@ -89,12 +84,16 @@ public:
 		return false;
 	}
 
-
+	virtual int set(string var, lua_State * L);
+	virtual int get(string var, lua_State * L);
+	virtual int exec(string nfonc, lua_State * L);
+	virtual sblElement * sblCElement::Copie();
 
 protected:
 	map<string, sbl::lua_Callback> map_fonctions;
 
-	virtual void HCopie(sblCElement * p);
+	virtual void sblCElement::HCopie(sblCElement * p);
+	
 };
 
 #endif

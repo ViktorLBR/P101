@@ -160,8 +160,8 @@ void SceneOpenGL::bouclePrincipale()
 
 	ogli::BLutin * blutin = new ogli::BLutin();
 	blutin->texture = "DATA/Textures/alpha.png";
-	blutin->vertexShader = "DATA/Shaders/texture2Du.vert";
-	blutin->fragmentShader = "DATA/Shaders/texture2Du.frag";
+	blutin->vertexShader = "DATA/Shaders/texture2Dp.vert";
+	blutin->fragmentShader = "DATA/Shaders/texture2Dp.frag";
 
 	hub_lua = new sblHub();
 

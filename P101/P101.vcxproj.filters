@@ -31,6 +31,9 @@
     <Filter Include="Source Files\GEN">
       <UniqueIdentifier>{0954cec7-6be4-4543-9da9-68de9b85065d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{255023a8-d2d7-4d02-87e2-7a7c3ccab6ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -114,6 +117,9 @@
     <ClInclude Include="Input_Hard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ogli_texte2D.h">
+      <Filter>Header Files\OGLI</Filter>
+    </ClInclude>
     <ClInclude Include="ogli_lutin.h">
       <Filter>Header Files\OGLI</Filter>
     </ClInclude>
@@ -177,6 +183,12 @@
     </None>
     <None Include="config.lua">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DATA\Shaders\texture2Dp.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="DATA\Shaders\texture2Dp.vert">
+      <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>
