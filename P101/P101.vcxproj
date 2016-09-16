@@ -101,6 +101,7 @@
     <ClInclude Include="ogli_lutin.h" />
     <ClInclude Include="ogli_main.h" />
     <ClInclude Include="ogli_slot.h" />
+    <ClInclude Include="ogli_texte2D.h" />
     <ClInclude Include="sbl_boost.h" />
     <ClInclude Include="sbl_element.h" />
     <ClInclude Include="sbl_env.h" />
@@ -136,6 +137,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="config.lua" />
+    <None Include="DATA\Shaders\texture2Dp.frag" />
+    <None Include="DATA\Shaders\texture2Dp.vert" />
     <None Include="sbl_ext1.lua" />
     <None Include="test.lua" />
   </ItemGroup>

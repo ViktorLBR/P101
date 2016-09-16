@@ -28,7 +28,7 @@ sbl_fermer(map_nadr)
 
 function callback()
  x, y = sbl_get('coord')
- sbl_set('coord', x+y+0.01, y-x)
+ sbl_set('coord', x+y+0.01, y-x, 0.1)
  sbl_exec('charger')
 end
 

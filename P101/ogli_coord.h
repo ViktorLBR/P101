@@ -24,54 +24,74 @@ using namespace glm;
 
 #ifndef OGLI_COORD
 #define OGLI_COORD
-
+/*
 namespace ogli
-{/*
-	class Coord2D
+{
+
+	class vec2dyn
 	{
 	public:
-		Coord2D * ancrage;
+		float &a_x, &a_y; // Ancrages
+		float x, y;
 
-		Coord2D(float x, float y)
+		float get_x()
 		{
-			coord.x = x;
-			coord.y = y;
-			ancrage = NULL;
+			return x + a_x;
 		}
-		Coord2D()
+		void set_x(float an_x)
 		{
-			Coord2D(0, 0);
-		}
-		Coord2D(vec2 arg)
-		{
-			coord = arg;
-			ancrage = NULL;
-		}
-		Coord2D(Coord2D & arg)
-		{
-			coord = arg.getCoord();
-			ancrage = arg.ancrage;
+			x = an_x - a_x;
 		}
 
-		vec2 getRCoord()
+		float get_y()
 		{
-			if (ancrage == NULL)
-				return coord;
-			else
-				return coord + ancrage->getRCoord();
+			return y + a_y;
 		}
-		vec2 getCoord()
+		void set_y(float an_y)
 		{
-			return coord;
+			y = an_y - a_y;
 		}
-		void setCoord(vec2 arg)
+
+		virtual vec2 get()
 		{
-			coord = arg;
+			return vec2(get_x(), get_y());
+		}
+		virtual void set(vec2 v)
+		{
+			set_x(v.x);
+			set_y(v.y);
+		}
+
+		virtual vec2 getR()
+		{
+			return vec2(x, y);
+		}
+		virtual void setR(vec2 v)
+		{
+			x = v.x;
+			y = v.y;
 		}
 
 	protected:
-		vec2 coord;
-	};*/
-};
 
+	};
+
+	class vec3dyn
+	{
+	public:
+		float z, &a_z;
+
+		float get_z()
+		{
+			return z + a_z;
+		}
+		void set_z(float an_z)
+		{
+			z = an_z - a_z;
+		}
+
+
+	};
+};
+*/
 #endif

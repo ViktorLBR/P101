@@ -31,9 +31,41 @@ using namespace glm;
 
 namespace ogli
 {
-	class primitif_Element2D
+	class primitif_Repere2D
 	{
 	public:
+		glm::vec3 * coord;
+		glm::vec2 * dim;
+
+		primitif_Repere2D(vec3 * acoord, vec2 * adim)
+		{
+			coord = acoord;
+			dim = adim;
+		}
+		primitif_Repere2D()
+		{
+			coord = NULL;
+			dim = NULL;
+		}
+		primitif_Repere2D(primitif_Repere2D * master)
+		{
+			coord = master->coord;
+			dim = master->dim;
+		}
+	};
+
+	class primitif_Element2D : public primitif_Repere2D
+	{
+	public:
+		string vertexShader, fragmentShader, texture;
+
+		primitif_Element2D(primitif_Repere2D * master) : primitif_Repere2D(master)
+		{
+			vertexShader = "";
+			fragmentShader = "";
+			texture = "";
+		}
+
 		virtual void afficher()
 		{
 
@@ -42,21 +74,87 @@ namespace ogli
 		{
 
 		}
+
+		virtual void Charger()
+		{
+			delete m_shader;
+			m_shader = new Shader(vertexShader, fragmentShader);
+			m_shader->charger();
+
+			delete m_texture;
+			m_texture = new Texture(texture);
+			m_texture->charger();
+		}
+
+	protected:
+
+		virtual void data_evgl()
+		{
+			// Activation du shader
+
+			glUseProgram(m_shader->getProgramID());
+
+
+			// Envoi des vertices
+
+			glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, v_tab);
+			glEnableVertexAttribArray(0);
+
+
+			// Envoi des coordonnées de texture
+
+			glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, t_tab);
+			glEnableVertexAttribArray(2);
+
+
+			// Envoi uniforms
+
+			glUniform3f(glGetUniformLocation(m_shader->getProgramID(), "position"), coord->x, coord->y, coord->z);
+
+
+			// Verrouillage de la texture
+
+			glBindTexture(GL_TEXTURE_2D, m_texture->getID());
+		}
+		virtual void data_lib()
+		{
+			// Déverrouillage de la texture
+
+			glBindTexture(GL_TEXTURE_2D, 0);
+
+
+			// Désactivation des tableaux
+
+			glDisableVertexAttribArray(2);
+			glDisableVertexAttribArray(0);
+
+
+			// Désactivation du shader
+
+			glUseProgram(0);
+		}
+
+		float * v_tab;
+		float * t_tab;
+		Texture * m_texture;
+		Shader * m_shader;
 	};
 
-	class CoordRectangle2D
+	class CoordRectangle2D : public primitif_Repere2D
 	{
 	public:
-		glm::vec2 * coord;
-		glm::vec2 * dim;
 
 		float tab[12];
+
+		CoordRectangle2D(primitif_Repere2D * master) : primitif_Repere2D(master)
+		{
+
+		}
 
 		void charger()
 		{
 			float buffer[] =
 			{
-
 				coord->x, coord->y,
 				coord->x + dim->x, coord->y,
 				coord->x + dim->x, coord->y + dim->y,
@@ -77,35 +175,34 @@ namespace ogli
 	class Rectangle : public primitif_Element2D
 	{
 	public:
-		glm::vec2 * coord;
-		float * z;
-		glm::vec2 * dim;
-		glm::vec2 * t_coord, * t_dim;
-		string vertexShader, fragmentShader, texture;
+		primitif_Repere2D * t_Repere2D;
+		primitif_Repere2D * v_Repere2D;
 
-		Rectangle(vec2 * acoord, vec2 * adim, float * pz)
+		Rectangle(primitif_Repere2D * master) : primitif_Element2D(master)
 		{
-			coord = acoord;
-			dim = adim;
-			z = pz;
-			texture_tab.coord = t_coord = new vec2(0, 0);
-			texture_tab.dim = t_dim = new vec2(1, 1);
-			vertex_tab.coord = coord;
-			vertex_tab.dim = dim;
+			coord = master->coord;
+			dim = master->dim;
+
+			t_Repere2D = new primitif_Repere2D(new vec3(0, 0, 0), new vec2(1, 0)); 
+			v_Repere2D = new primitif_Repere2D(new vec3(0, 0, 0), dim);
+
+			texture_tab = new CoordRectangle2D(t_Repere2D);
+			vertex_tab = new CoordRectangle2D(v_Repere2D);
+
+			v_tab = vertex_tab->tab;
+			t_tab = texture_tab->tab;
 		}
 
 		void Charger()
 		{
-			vertex_tab.coord = coord;
-			vertex_tab.dim = dim;
-			delete m_shader;
-			m_shader = new Shader(vertexShader, fragmentShader);
-			m_shader->charger();
-			delete m_texture;
-			m_texture = new Texture(texture);
-			m_texture->charger();
-			vertex_tab.charger();
-			texture_tab.charger();
+			primitif_Element2D::Charger();
+			vertex_tab->dim = dim;
+
+			vertex_tab->charger();
+			texture_tab->charger();
+
+			v_tab = vertex_tab->tab;
+			t_tab = texture_tab->tab;
 		}
 
 		void afficher()
@@ -114,65 +211,20 @@ namespace ogli
 		}
 		void l_afficher()
 		{
-			// Activation du shader
-
-			glUseProgram(m_shader->getProgramID());
-
-
-			// Envoi des vertices
-
-			glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, vertex_tab.tab);
-			glEnableVertexAttribArray(0);
-
-
-			// Envoi des coordonnées de texture
-
-			glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, texture_tab.tab);
-			glEnableVertexAttribArray(2);
-
-			// Envoi des matrices
-
-			glUniform1f(glGetUniformLocation(m_shader->getProgramID(), "profondeur"), *z);
-
-			// Verrouillage de la texture
-
-			glBindTexture(GL_TEXTURE_2D, m_texture->getID());
-
-
-			// Rendu
+			data_evgl();
 
 			glDrawArrays(GL_TRIANGLES, 0, 6);
 
-
-			// Déverrouillage de la texture
-
-			glBindTexture(GL_TEXTURE_2D, 0);
-
-
-			// Désactivation des tableaux
-
-			glDisableVertexAttribArray(2);
-			glDisableVertexAttribArray(0);
-
-
-			// Désactivation du shader
-
-			glUseProgram(0);
+			data_lib();
 		}
 
 	protected:
-		Texture * m_texture;
-		Shader * m_shader;
-		CoordRectangle2D vertex_tab, texture_tab;
+		CoordRectangle2D * vertex_tab, * texture_tab;
 	};
 
-	class BLutin : public primitif_TicInput
+	class BLutin : public primitif_TicInput, primitif_Repere2D
 	{
 	public:
-		glm::vec2 * coord;
-		glm::vec2 * dim;
-		float z;
-
 		bool in; // Vrai si le pointeur est sur le bouton
 		bool activate; // Vrai si le pointeur est activé
 		bool visible;
@@ -203,19 +255,20 @@ namespace ogli
 			}
 			if (nvar == "profondeur")
 			{
-				z = lua_tonumber(L, 2);
+				coord->z = lua_tonumber(L, 2);
 				return 0;
 			}
 			if (nvar == "dim")
 			{
-				delete dim;
-				dim = new vec2(lua_tonumber(L, 2), lua_tonumber(L, 3));
+				dim->x = lua_tonumber(L, 2);
+				dim->y = lua_tonumber(L, 2);
 				return 0;
 			}
 			if (nvar == "coord")
 			{
-				delete coord;
-				coord = new vec2(lua_tonumber(L, 2), lua_tonumber(L, 3));
+				coord->x = lua_tonumber(L, 2);
+				coord->y = lua_tonumber(L, 3);
+				coord->z = lua_tonumber(L, 4);
 				return 0;
 			}
 
@@ -245,7 +298,7 @@ namespace ogli
 			}
 			if (nvar == "profondeur")
 			{
-				sbl::sbl_push(L, z);
+				sbl::sbl_push(L, coord->z);
 				return 1;
 			}
 			if (nvar == "dim")
@@ -294,19 +347,17 @@ namespace ogli
 		BLutin()
 		{
 			dim = new vec2(0, 0);
-			coord = new vec2(0, 0);
-			z = 0.1;
-			disp = new Rectangle(coord, dim, &z);
+			coord = new vec3(0, 0, 0);
+			disp = new Rectangle(this);
 			visible = false;
 			activate = false;
 			in = false;
 		}
-		BLutin(vec2 * pc, vec2 * pd)
+		BLutin(vec3 * pc, vec2 * pd)
 		{
 			dim = pd;
 			coord = pc;
-			z = 0.1;
-			disp = new Rectangle(coord, dim, &z);
+			disp = new Rectangle(this);
 			visible = false;
 			activate = false;
 			in = false;
@@ -324,7 +375,7 @@ namespace ogli
 
 		virtual void tic(Input &input)
 		{
-			if (input.rectPointeurGL(*coord, *dim))
+			if (input.rectPointeurGL(vec2(coord->x, coord->y), *dim))
 			{
 				if (in == false)
 					onEnter();
@@ -339,7 +390,7 @@ namespace ogli
 			else
 				if (in == true)
 					onLeaving();
-			in = input.rectPointeurGL(*coord, *dim);
+			in = input.rectPointeurGL(vec2(coord->x, coord->y), *dim);
 			activate = input.getBoutonSouris(1);
 			normal();
 		}
@@ -386,7 +437,6 @@ namespace ogli
 			p->texture = texture;
 			p->vertexShader = vertexShader;
 			p->fragmentShader = fragmentShader;
-			p->z = z;
 			delete p->dim;
 			delete p->coord;
 			p->dim = dim;
