@@ -1,13 +1,16 @@
-﻿Build started 18/08/2016 23:18:28.
+﻿Build started 16/09/2016 19:19:56.
      1>Project "E:\Projets GitHub\P101-clone\P101\P101\P101.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Release\P101.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
          stdafx.cpp
-     1>e:\projets github\p101-clone\p101\p101\ogli_slot.h(73): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>e:\projets github\p101-clone\p101\p101\ogli_lutin.h(186): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>e:\projets github\p101-clone\p101\p101\ogli_lutin.h(206): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101-clone\p101\p101\ogli_lutin.h(298): warning C4305: '=' : truncation from 'double' to 'float'
-     1>e:\projets github\p101-clone\p101\p101\ogli_lutin.h(308): warning C4305: '=' : truncation from 'double' to 'float'
+     1>e:\projets github\p101-clone\p101\p101\ogli_slot.h(72): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>e:\projets github\p101-clone\p101\p101\ogli_lutin.h(238): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>e:\projets github\p101-clone\p101\p101\ogli_lutin.h(258): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
+     1>e:\projets github\p101-clone\p101\p101\ogli_lutin.h(263): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
+     1>e:\projets github\p101-clone\p101\p101\ogli_lutin.h(264): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
+     1>e:\projets github\p101-clone\p101\p101\ogli_lutin.h(269): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
+     1>e:\projets github\p101-clone\p101\p101\ogli_lutin.h(270): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
+     1>e:\projets github\p101-clone\p101\p101\ogli_lutin.h(271): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
      1>e:\projets github\p101-clone\p101\p101\gen_3delement.h(78): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
      1>e:\projets github\p101-clone\p101\p101\gen_3delement.h(79): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
      1>e:\projets github\p101-clone\p101\p101\gen_3delement.h(80): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
@@ -18,10 +21,13 @@
      1>e:\projets github\p101-clone\p101\p101\map.h(47): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
      1>e:\projets github\p101-clone\p101\p101\map.h(48): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
      1>e:\projets github\p101-clone\p101\p101\map.h(56): warning C4244: 'argument' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
+     1>e:\projets github\p101-clone\p101\p101\Input_Hard.h(8): warning C4584: 'lalt_slot' : base-class 'ogli::primitif_TicInput' is already a base-class of 'ogli::b_Slot'
+                 e:\projets github\p101-clone\p101\p101\ogli_slot.h(12) : see declaration of 'ogli::primitif_TicInput'
+                 e:\projets github\p101-clone\p101\p101\ogli_slot.h(117) : see declaration of 'ogli::b_Slot'
      1>e:\projets github\p101-clone\p101\p101\gen_boost.h(18): warning C4244: 'argument' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
                  e:\projets github\p101-clone\p101\p101\gen_boost.h(15) : while compiling class template member function 'int gen::Executeur<ogli::primitif_Slot>::exec(std::string,lua_State *)'
-                 e:\projets github\p101-clone\p101\p101\ogli_slot.h(167) : see reference to class template instantiation 'gen::Executeur<ogli::primitif_Slot>' being compiled
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\P101.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Caisse.cpp Camera.cpp Cube.cpp gen_boost.cpp Input.cpp "P101 (moteur).cpp" sbl_boost.cpp sbl_element.cpp sbl_env.cpp sbl_hub.cpp sbl_interface_hub.cpp sbl_main.cpp SceneOpenGL.cpp Shader.cpp Texture.cpp
+                 e:\projets github\p101-clone\p101\p101\ogli_slot.h(166) : see reference to class template instantiation 'gen::Executeur<ogli::primitif_Slot>' being compiled
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\P101.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Caisse.cpp Camera.cpp Cube.cpp Input.cpp "P101 (moteur).cpp" SceneOpenGL.cpp Shader.cpp Texture.cpp gen_boost.cpp sbl_boost.cpp sbl_element.cpp sbl_env.cpp sbl_hub.cpp sbl_interface_hub.cpp sbl_main.cpp
          Caisse.cpp
          Camera.cpp
      1>Camera.cpp(55): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
@@ -29,10 +35,16 @@
      1>Camera.cpp(214): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>Camera.cpp(215): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
          Cube.cpp
-         gen_boost.cpp
          Input.cpp
          P101 (moteur).cpp
-     1>e:\projets github\p101-clone\p101\p101\SceneOpenGL.h(87): warning C4244: 'initializing' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
+     1>e:\projets github\p101-clone\p101\p101\SceneOpenGL.h(100): warning C4244: 'initializing' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
+     1>e:\projets github\p101-clone\p101\p101\SceneOpenGL.h(120): warning C4244: 'argument' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
+         SceneOpenGL.cpp
+     1>e:\projets github\p101-clone\p101\p101\SceneOpenGL.h(100): warning C4244: 'initializing' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
+     1>e:\projets github\p101-clone\p101\p101\SceneOpenGL.h(120): warning C4244: 'argument' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
+         Shader.cpp
+         Texture.cpp
+         gen_boost.cpp
          sbl_boost.cpp
          sbl_element.cpp
          sbl_env.cpp
@@ -40,10 +52,6 @@
      1>sbl_hub.cpp(53): warning C4244: 'initializing' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
          sbl_interface_hub.cpp
          sbl_main.cpp
-         SceneOpenGL.cpp
-     1>e:\projets github\p101-clone\p101\p101\SceneOpenGL.h(87): warning C4244: 'initializing' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
-         Shader.cpp
-         Texture.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Projets GitHub\P101-clone\P101\Release\P101.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:.\lib lua53.lib SDL2.lib SDL2main.lib SDL2test.lib SDL2_image.lib glew32s.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Projets GitHub\P101-clone\P101\Release\P101.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Projets GitHub\P101-clone\P101\Release\P101.lib" /MACHINE:X86 /SAFESEH Release\Caisse.obj
          Release\Camera.obj
@@ -63,6 +71,8 @@
          Release\Texture.obj
      1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
          Generating code
+     1>e:\projets github\p101-clone\p101\p101\sceneopengl.h(84): warning C4715: 'SceneOpenGL::pop2D' : not all control paths return a value
+     1>e:\projets github\p101-clone\p101\p101\sceneopengl.h(78): warning C4715: 'SceneOpenGL::push2D' : not all control paths return a value
          Finished generating code
      1>glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'E:\Projets GitHub\P101-clone\P101\Release\vc120.pdb'; linking object as if no debug info
          P101.vcxproj -> E:\Projets GitHub\P101-clone\P101\Release\P101.exe
@@ -70,4 +80,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.70
+Time Elapsed 00:00:04.66

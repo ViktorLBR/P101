@@ -183,7 +183,7 @@ namespace ogli
 			coord = master->coord;
 			dim = master->dim;
 
-			t_Repere2D = new primitif_Repere2D(new vec3(0, 0, 0), new vec2(1, 0)); 
+			t_Repere2D = new primitif_Repere2D(new vec3(0, 0, 0), new vec2(1, 1)); 
 			v_Repere2D = new primitif_Repere2D(new vec3(0, 0, 0), dim);
 
 			texture_tab = new CoordRectangle2D(t_Repere2D);
