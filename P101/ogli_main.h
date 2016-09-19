@@ -10,5 +10,7 @@
 
 #include "ogli_lutin.h"
 
+#include "ogli_texte2D.h"
+
 
 #endif

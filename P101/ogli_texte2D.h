@@ -31,7 +31,7 @@ using namespace sbl;
 
 namespace ogli
 {
-	class Police_Base : public sblCElement
+	/*class Police_Base : public sblCElement
 	{
 	public:
 		virtual int set(string nvar, lua_State * L)
@@ -95,16 +95,7 @@ namespace ogli
 		}
 
 		string texture, vertexShader, fragmentShader;
-		Texture * m_texture;
-		Shader * m_shader;
 
-		void Init()
-		{
-			delete m_texture;
-			delete m_shader;
-			m_texture = new Texture(texture);
-			m_shader = new Shader(vertexShader, fragmentShader);
-		}
 		Police_Base()
 		{
 
@@ -128,11 +119,27 @@ namespace ogli
 			sblCElement::HCopie(p);
 		}
 
-	};
+	};*/
 
-	class Texte2D_Base : public BLutin
+	class Lutin_BTexte : public BLutin
 	{
 	public:
+		string texte;
+
+		Lutin_BTexte()
+		{
+			master = NULL;
+			dim = new vec2(0, 0);
+			coord = new vec3(0, 0, 0);
+			visible = false;
+			activate = false;
+			in = false;
+			texte = "";
+			fragmentShader = "";
+			vertexShader = "";
+			texture = "";
+		}
+
 		virtual int set(string nvar, lua_State * L)
 		{
 			if (nvar == "texte")
@@ -145,6 +152,11 @@ namespace ogli
 		}
 		virtual int get(string nvar, lua_State * L)
 		{
+			if (nvar == "texte")
+			{
+				sbl_push(L, texte);
+				return 1;
+			}
 
 			return BLutin::set(nvar, L);
 		}
@@ -154,62 +166,14 @@ namespace ogli
 			return BLutin::exec(nfonc, L);
 		}
 
+
 		virtual sblElement * Copie()
 		{
-			Texte2D_Base * p = new Texte2D_Base();
+			Lutin_BTexte * p = new Lutin_BTexte();
 
 			HCopie(p);
 
 			return p;
-		}
-
-		string texte;
-		Police_Base * police;
-
-		void Init()
-		{
-			glm::vec2 buffer;
-			char character;
-			float uv_x, uv_y;
-
-			glm::vec2 vertex_up_left, vertex_up_right, vertex_down_right, vertex_down_left;
-
-			delete vertices;
-			vertices = new vector < float > ;
-			delete tcoord;
-			tcoord = new vector < float >;
-
-			for (unsigned int i = 0; i < texte.size; i++){
-
-				glm::vec2 vertex_up_left = glm::vec2(i*size, size);
-				glm::vec2 vertex_up_right = glm::vec2(i*size + size, size);
-				glm::vec2 vertex_down_right = glm::vec2(i*size + size, 0);
-				glm::vec2 vertex_down_left = glm::vec2(i*size, 0);
-
-
-				vertices->push_back(vertex_up_left.x);
-				vertices->push_back(vertex_up_left.y);
-
-				vertices->push_back(vertex_down_left.x);
-				vertices->push_back(vertex_down_left.y);
-
-				vertices->push_back(vertex_up_right.x);
-				vertices->push_back(vertex_up_right.x);
-
-
-				vertices->push_back(vertex_down_right.x);
-				vertices->push_back(vertex_down_right.y);
-
-				vertices->push_back(vertex_up_right.x);
-				vertices->push_back(vertex_up_right.y);
-
-				vertices->push_back(vertex_down_left.x);
-				vertices->push_back(vertex_down_left.y);
-
-				character = texte[i];
-				uv_x = (character % 16) / 16.0f;
-				uv_y = (character / 16) / 16.0f;
-			}
 		}
 
 		virtual void afficher()
@@ -218,70 +182,85 @@ namespace ogli
 		}
 		virtual void l_afficher()
 		{
+			if (texte.length() == 0)
+				return;
 			if (visible)
 			{
-				// Activation du shader
-
-				glUseProgram(police->m_shader->getProgramID());
-
-
-				// Envoi des vertices
-
-				glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, &vertices[0]);
-				glEnableVertexAttribArray(0);
-
-
-				// Envoi des coordonnées de texture
-
-				glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, &tcoord[0]);
-				glEnableVertexAttribArray(2);
-
-				// Envoi des matrices
-
-				glUniform1f(glGetUniformLocation(police->m_shader->getProgramID(), "profondeur"), z);
-
-				// Verrouillage de la texture
-
-				glBindTexture(GL_TEXTURE_2D, police->m_texture->getID());
-
-
-				// Rendu
-
-				glDrawArrays(GL_TRIANGLES, 0, vertices.size);
-
-
-				// Déverrouillage de la texture
-
-				glBindTexture(GL_TEXTURE_2D, 0);
-
-
-				// Désactivation des tableaux
-
-				glDisableVertexAttribArray(2);
-				glDisableVertexAttribArray(0);
-
-
-				// Désactivation du shader
-
-				glUseProgram(0);
-
+				data_evgl();
+				glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 2);
+				data_lib();
 			}
 		}
 
-	protected:
-		float size;
-		vector<float> * tcoord;
-		vector<float> * vertices;
-
-		virtual void HCopie(Texte2D_Base * p)
+		virtual void charger()
 		{
-			p->texture = texture;
-			p->vertexShader = vertexShader;
-			p->fragmentShader = fragmentShader;
+			if (texte.length() == 0)
+				return;
 
-			p->Init();
+			primitif_Element2D::charger();
+			glm::vec2 buffer;
+			char character;
+			float uv_x, uv_y;
+			float size = dim->x;
 
-			sblCElement::HCopie(p);
+			glm::vec2 vertex_up_left, vertex_up_right, vertex_down_right, vertex_down_left;
+			glm::vec2 uv_up_left, uv_up_right, uv_down_right, uv_down_left;
+
+			vertices.clear();
+			tcoord.clear();
+
+
+			for (unsigned int i = 0; i < texte.length(); i++)
+			{
+
+				vertex_up_left = vec2(i*size, size);
+				vertex_up_right = vec2(i*size + size, size);
+				vertex_down_right = vec2(i*size + size, 0);
+				vertex_down_left = vec2(i*size, 0);
+
+				push_vec2(vertices, vertex_up_left);
+				push_vec2(vertices, vertex_down_left);
+				push_vec2(vertices, vertex_up_right);
+
+				push_vec2(vertices, vertex_down_right);
+				push_vec2(vertices, vertex_up_right);
+				push_vec2(vertices, vertex_down_left);
+
+				character = texte[i];
+				uv_x = (character % 16) / 16.0f;
+				uv_y = (character / 16) / 16.0f;
+
+				uv_up_left = vec2(uv_x, 1.0f - uv_y);
+				uv_up_right = vec2(uv_x + 1.0f / 16.0f, 1.0f - uv_y);
+				uv_down_right = vec2(uv_x + 1.0f / 16.0f, 1.0f - (uv_y + 1.0f / 16.0f));
+				uv_down_left = vec2(uv_x, 1.0f - (uv_y + 1.0f / 16.0f));
+
+				push_vec2(tcoord, uv_up_left);
+				push_vec2(tcoord, uv_down_left);
+				push_vec2(tcoord, uv_up_right);
+				push_vec2(tcoord, uv_down_right);
+				push_vec2(tcoord, uv_up_right);
+				push_vec2(tcoord, uv_down_left);
+			}
+			v_tab = &(vertices)[0];
+			t_tab = &(tcoord)[0];
+		}
+
+	protected:
+		vector<float> tcoord;
+		vector<float> vertices;
+
+		void push_vec2(vector<float> & vec, glm::vec2 v2)
+		{
+			vec.push_back(v2.x);
+			vec.push_back(v2.y);
+		}
+
+		virtual void HCopie(Lutin_BTexte * p)
+		{
+			p->texte = texte;
+
+			BLutin::HCopie(p);
 		}
 	};
 };
