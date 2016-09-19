@@ -117,6 +117,12 @@ bool SceneOpenGL::initGL()
     glEnable(GL_DEPTH_TEST);
 
 
+	// Activation de la transparence
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
     // Tout s'est bien passé, on retourne true
 
     return true;
@@ -163,9 +169,17 @@ void SceneOpenGL::bouclePrincipale()
 	blutin->vertexShader = "DATA/Shaders/texture2Dp.vert";
 	blutin->fragmentShader = "DATA/Shaders/texture2Dp.frag";
 
+	ogli::Lutin_BTexte * tlutin = new ogli::Lutin_BTexte();
+	tlutin->texte = "test";
+	tlutin->fragmentShader = "DATA/Shaders/texture2Dp.frag";
+	tlutin->vertexShader = "DATA/Shaders/texture2Dp.vert";
+	tlutin->texture = "DATA/Textures/font2.png";
+	tlutin->charger();
+
 	hub_lua = new sblHub();
 
 	hub_lua->ajouter_element(this);
+	hub_lua->lib_ajouter("tlutin", tlutin);
 	hub_lua->lib_ajouter("blutin", blutin);
 	hub_lua->lib_ajouter("bloc", p_bloc_test);
 	hub_lua->lib_ajouter("map", p_map);

@@ -54,13 +54,24 @@ namespace ogli
 		}
 	};
 
+	primitif_Repere2D * primitif_RepereGLCentral = new primitif_Repere2D(new vec3(0, 0, 0), new vec2(0, 0));
+
 	class primitif_Element2D : public primitif_Repere2D
 	{
 	public:
 		string vertexShader, fragmentShader, texture;
+		primitif_Repere2D * repere;
 
-		primitif_Element2D(primitif_Repere2D * master) : primitif_Repere2D(master)
+		primitif_Element2D(primitif_Repere2D * master)
 		{
+			repere = master;
+			vertexShader = "";
+			fragmentShader = "";
+			texture = "";
+		}
+		primitif_Element2D() : primitif_Repere2D()
+		{
+			repere = NULL;
 			vertexShader = "";
 			fragmentShader = "";
 			texture = "";
@@ -75,7 +86,7 @@ namespace ogli
 
 		}
 
-		virtual void Charger()
+		virtual void charger()
 		{
 			delete m_shader;
 			m_shader = new Shader(vertexShader, fragmentShader);
@@ -108,8 +119,10 @@ namespace ogli
 
 
 			// Envoi uniforms
-
-			glUniform3f(glGetUniformLocation(m_shader->getProgramID(), "position"), coord->x, coord->y, coord->z);
+			vec3 bcoord(*coord);
+			if (repere != NULL)
+				bcoord += *(repere->coord);
+			glUniform3f(glGetUniformLocation(m_shader->getProgramID(), "position"), bcoord.x, bcoord.y, bcoord.z);
 
 
 			// Verrouillage de la texture
@@ -172,64 +185,17 @@ namespace ogli
 	protected:
 	};
 
-	class Rectangle : public primitif_Element2D
-	{
-	public:
-		primitif_Repere2D * t_Repere2D;
-		primitif_Repere2D * v_Repere2D;
-
-		Rectangle(primitif_Repere2D * master) : primitif_Element2D(master)
-		{
-			coord = master->coord;
-			dim = master->dim;
-
-			t_Repere2D = new primitif_Repere2D(new vec3(0, 0, 0), new vec2(1, 1)); 
-			v_Repere2D = new primitif_Repere2D(new vec3(0, 0, 0), dim);
-
-			texture_tab = new CoordRectangle2D(t_Repere2D);
-			vertex_tab = new CoordRectangle2D(v_Repere2D);
-
-			v_tab = vertex_tab->tab;
-			t_tab = texture_tab->tab;
-		}
-
-		void Charger()
-		{
-			primitif_Element2D::Charger();
-			vertex_tab->dim = dim;
-
-			vertex_tab->charger();
-			texture_tab->charger();
-
-			v_tab = vertex_tab->tab;
-			t_tab = texture_tab->tab;
-		}
-
-		void afficher()
-		{
-			l_afficher();
-		}
-		void l_afficher()
-		{
-			data_evgl();
-
-			glDrawArrays(GL_TRIANGLES, 0, 6);
-
-			data_lib();
-		}
-
-	protected:
-		CoordRectangle2D * vertex_tab, * texture_tab;
-	};
-
-	class BLutin : public primitif_TicInput, primitif_Repere2D
+	class BLutin : public primitif_TicInput, public primitif_Element2D
 	{
 	public:
 		bool in; // Vrai si le pointeur est sur le bouton
 		bool activate; // Vrai si le pointeur est activé
 		bool visible;
 
-		string texture, vertexShader, fragmentShader;
+		primitif_Repere2D * t_Repere2D;
+		primitif_Repere2D * v_Repere2D;
+
+		BLutin * master;
 
 		virtual int set(string nvar, lua_State * L)
 		{
@@ -332,32 +298,55 @@ namespace ogli
 				charger();
 				return 0;
 			}
+			if (nfonc == "link")
+			{
+				sblAdr nadr = lua_tonumber(L, 2);
+				if (nadr == 0)
+					unlink();
+				else
+					link(convert<ogli::BLutin>(hub_lua->getElement(nadr)));
+				return 0;
+			}
 
 			return sblCElement::exec(nfonc, L);
 		}
 
-		void charger()
+		virtual void link(BLutin * master)
 		{
-			disp->texture = texture;
-			disp->vertexShader = vertexShader;
-			disp->fragmentShader = fragmentShader;
-			disp->Charger();
+			this->master = master;
+		}
+		virtual void unlink()
+		{
+			master = NULL;
+		}
+
+		virtual void charger()
+		{
+			primitif_Element2D::charger();
+			vertex_tab->dim = dim;
+
+			vertex_tab->charger();
+			texture_tab->charger();
+
+			v_tab = vertex_tab->tab;
+			t_tab = texture_tab->tab;
 		}
 
 		BLutin()
 		{
+			master = NULL;
+
+			t_Repere2D = new primitif_Repere2D(new vec3(0, 0, 0), new vec2(1, 1));
+			v_Repere2D = new primitif_Repere2D(new vec3(0, 0, 0), dim);
+
+			texture_tab = new CoordRectangle2D(t_Repere2D);
+			vertex_tab = new CoordRectangle2D(v_Repere2D);
+
+			v_tab = vertex_tab->tab;
+			t_tab = texture_tab->tab;
+
 			dim = new vec2(0, 0);
 			coord = new vec3(0, 0, 0);
-			disp = new Rectangle(this);
-			visible = false;
-			activate = false;
-			in = false;
-		}
-		BLutin(vec3 * pc, vec2 * pd)
-		{
-			dim = pd;
-			coord = pc;
-			disp = new Rectangle(this);
 			visible = false;
 			activate = false;
 			in = false;
@@ -370,7 +359,11 @@ namespace ogli
 		virtual void l_afficher()
 		{
 			if (visible)
-				disp->afficher();
+			{
+				data_evgl();
+				glDrawArrays(GL_TRIANGLES, 0, 6);
+				data_lib();
+			}
 		}
 
 		virtual void tic(Input &input)
@@ -430,19 +423,13 @@ namespace ogli
 		}
 
 	protected:
-		Rectangle * disp;
+		CoordRectangle2D * vertex_tab, *texture_tab;
 
 		virtual void HCopie(BLutin * p)
 		{
 			p->texture = texture;
 			p->vertexShader = vertexShader;
 			p->fragmentShader = fragmentShader;
-			delete p->dim;
-			delete p->coord;
-			p->dim = dim;
-			p->disp->dim = dim;
-			p->disp->coord = coord;
-			p->coord = coord;
 
 			sblCElement::HCopie(p);
 		}
