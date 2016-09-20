@@ -92,10 +92,12 @@
     <ClInclude Include="gen_3delement.h" />
     <ClInclude Include="gen_boost.h" />
     <ClInclude Include="gen_main.h" />
+    <ClInclude Include="gen_physique.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Input_Hard.h" />
     <ClInclude Include="lunar.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="msys.h" />
     <ClInclude Include="ogli_coord.h" />
     <ClInclude Include="ogli_hub.h" />
     <ClInclude Include="ogli_lutin.h" />

@@ -140,6 +140,25 @@ namespace gen
 			Element3DB::HCopie(p);
 		}
 	};
+
+
+
+	class hub_3D : public gen::Executeur < Element3D >
+	{
+	public:
+		mat4 * projection;
+		mat4 * modelview;
+
+		hub_3D()
+		{
+			nom = "hub_3D";
+		}
+
+		virtual void operation(Element3D * p)
+		{
+			p->afficher(*projection, *modelview);
+		}
+	};
 };
 
 #endif

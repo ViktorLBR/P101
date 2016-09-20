@@ -13,14 +13,16 @@ namespace gen
 	public:
 		virtual int exec(string nfonc, lua_State * L)
 		{
+			string sbuffer = lua_tostring(L, 2);
+			sblAdr nadr = lua_tonumber(L, 3);
 			if (nfonc == "push")
 			{
-				sbl::sbl_push(L, push(lua_tostring(L, 2), convert<T>(hub_lua->getElement(lua_tonumber(L, 3)))));
+				sbl::sbl_push(L, push(sbuffer, convert<T>(hub_lua->getElement(nadr))));
 				return 1;
 			}
 			if (nfonc == "pop")
 			{
-				sbl::sbl_push(L, pop(lua_tostring(L, 2)));
+				sbl::sbl_push(L, pop(sbuffer));
 				return 1;
 			}
 

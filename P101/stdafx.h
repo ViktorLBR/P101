@@ -24,7 +24,7 @@ extern "C" {
 
 #define method(class, name) {#name, &class::name}
 
-
+#include "gen_physique.h"
 
 #include "sbl_main.h"
 
@@ -42,5 +42,7 @@ extern "C" {
 #include "Input.h"
 #include "Camera.h"
 #include "Input_Hard.h"
+
+#include "SceneOpenGL.h"
 
 // TODO: reference additional headers your program requires here

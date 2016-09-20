@@ -1,15 +1,27 @@
 opengl_s = sbl_getnom('SceneOpenGL')
-map_nadr = sbl_create('map')
-
 h_slot_nadr = sbl_getnom('hub_Slot')
 h_ticinput_nadr = sbl_getnom('hub_TicInput')
 h_2D_nadr = sbl_getnom('hub_2D')
+h_3D_nadr = sbl_getnom('hub_3D')
 
-sbl_charger(opengl_s)
-sbl_exec('pushdisp', map_nadr)
+
+
+
+map_nadr = sbl_create('map')
+sbl_charger(h_3D_nadr)
+sbl_exec('push', 'map', map_nadr)
 sbl_fermer()
 
+
+
+
 function tcallback()
+ vart = sbl_get('texte')
+ if vart == 'ok' then
+  sbl_set('texte', 'test')
+ else
+  sbl_set('texte', 'ok')
+ end
  sbl_exec('charger')
 end
 
@@ -18,21 +30,6 @@ function callback()
  sbl_set('coord', x+y+0.01, y-x, 0.1)
  sbl_exec('charger')
 end
-
-
-
-texte_nadr = sbl_create('tlutin')
-sbl_charger(texte_nadr)
-
-sbl_set('dim', 0.3, 1)
-sbl_set('coord', -0.8, -0.6, 0.1)
-sbl_exec('enregistrerFonc', 'onClic', 'tcallback')
-sbl_set('nom','testtlutin')
-sbl_set('visible', 1)
-sbl_exec('charger')
-
-sbl_fermer()
-
 
 bloc_nadr = sbl_create('bloc')
 sbl_charger(bloc_nadr)
@@ -54,6 +51,20 @@ sbl_exec('enregistrerFonc', 'onClic', 'callback')
 sbl_set('nom','testblutin')
 sbl_set('visible', 1)
 
+sbl_fermer()
+
+
+texte_nadr = sbl_create('tlutin')
+sbl_charger(texte_nadr)
+
+sbl_set('dim', 0.5, 0.3)
+sbl_set('coord', -1, -1, 0.1)
+sbl_exec('enregistrerFonc', 'onClic', 'tcallback')
+sbl_set('nom','testtlutin')
+sbl_set('visible', 1)
+sbl_exec('charger')
+
+sbl_fermer()
 
 sbl_charger(h_ticinput_nadr)
 sbl_exec('push', 'blutin', blutin_nadr)

@@ -123,6 +123,12 @@
     <ClInclude Include="ogli_lutin.h">
       <Filter>Header Files\OGLI</Filter>
     </ClInclude>
+    <ClInclude Include="msys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gen_physique.h">
+      <Filter>Header Files\GEN</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

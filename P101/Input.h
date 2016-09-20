@@ -57,11 +57,11 @@ class Input
 
 	vec2 gl_to_sdl(vec2 input)
 	{
-		return vec2((input.x + 1) * 1280 / 2, (1 - input.y) * 720 / 2);
+		return vec2((input.x + 1) * y_window / 2, (1 - input.y) * x_window / 2);
 	}
 	vec2 gl_to_sdlN(vec2 input)
 	{
-		return vec2(input.x * 1280 / 2, input.y * -720 / 2);
+		return vec2(input.x * y_window / 2, input.y * -x_window / 2);
 	}
 
 	bool rectHB_c(vec2 A, vec2 B, vec2 HB)
@@ -88,6 +88,9 @@ class Input
 	{
 		return rectHB_d(A, B, vec2(m_x, m_y));
 	}
+
+
+	int x_window, y_window;
 
     private:
 

@@ -31,100 +31,11 @@ using namespace sbl;
 
 namespace ogli
 {
-	/*class Police_Base : public sblCElement
-	{
-	public:
-		virtual int set(string nvar, lua_State * L)
-		{
-			if (nvar == "texture")
-			{
-				texture = lua_tostring(L, 2);
-				return 0;
-			}
-			if (nvar == "vertexShader")
-			{
-				vertexShader = lua_tostring(L, 2);
-				return 0;
-			}
-			if (nvar == "fragmentShader")
-			{
-				fragmentShader = lua_tostring(L, 2);
-				return 0;
-			}
-
-			return sblCElement::set(nvar, L);
-		}
-		virtual int get(string nvar, lua_State * L)
-		{
-			if (nvar == "texture")
-			{
-				sbl::sbl_push(L, texture);
-				return 1;
-			}
-			if (nvar == "vertexShader")
-			{
-				sbl::sbl_push(L, vertexShader);
-				return 1;
-			}
-			if (nvar == "fragmentShader")
-			{
-				sbl::sbl_push(L, fragmentShader);
-				return 1;
-			}
-
-			return sblCElement::set(nvar, L);
-		}
-		virtual int exec(string nfonc, lua_State * L)
-		{
-			if (nfonc == "Init")
-			{
-				Init();
-				return 0;
-			}
-
-			return sblCElement::exec(nfonc, L);
-		}
-
-		virtual sblElement * Copie()
-		{
-			Police_Base * p = new Police_Base();
-
-			HCopie(p);
-
-			return p;
-		}
-
-		string texture, vertexShader, fragmentShader;
-
-		Police_Base()
-		{
-
-		}
-		~Police_Base()
-		{
-			delete m_texture;
-			delete m_shader;
-		}
-
-	protected:
-
-		virtual void HCopie(Police_Base * p)
-		{
-			p->texture = texture;
-			p->vertexShader = vertexShader;
-			p->fragmentShader = fragmentShader;
-
-			p->Init();
-
-			sblCElement::HCopie(p);
-		}
-
-	};*/
-
 	class Lutin_BTexte : public BLutin
 	{
 	public:
 		string texte;
+		float ratio;
 
 		Lutin_BTexte()
 		{
@@ -138,6 +49,7 @@ namespace ogli
 			fragmentShader = "";
 			vertexShader = "";
 			texture = "";
+			ratio = screen_data->get_ratio();
 		}
 
 		virtual int set(string nvar, lua_State * L)
@@ -145,6 +57,11 @@ namespace ogli
 			if (nvar == "texte")
 			{
 				texte = lua_tostring(L, 2);
+				return 0;
+			}
+			if (nvar == "ratio")
+			{
+				ratio = lua_tonumber(L, 2);
 				return 0;
 			}
 
@@ -157,11 +74,20 @@ namespace ogli
 				sbl_push(L, texte);
 				return 1;
 			}
+			if (nvar == "ratio")
+			{
+				sbl_push(L, ratio);
+				return 1;
+			}
 
 			return BLutin::set(nvar, L);
 		}
 		virtual int exec(string nfonc, lua_State * L)
 		{
+			if (nfonc == "eqratio")
+			{
+				ratio = screen_data->get_ratio();
+			}
 
 			return BLutin::exec(nfonc, L);
 		}
@@ -200,8 +126,11 @@ namespace ogli
 			primitif_Element2D::charger();
 			glm::vec2 buffer;
 			char character;
+			float ratio = screen_data->get_ratio();
 			float uv_x, uv_y;
-			float size = dim->x;
+			float size = dim->y;
+			float sizex = size / ratio;
+			dim->x = texte.length() * sizex;
 
 			glm::vec2 vertex_up_left, vertex_up_right, vertex_down_right, vertex_down_left;
 			glm::vec2 uv_up_left, uv_up_right, uv_down_right, uv_down_left;
@@ -213,10 +142,10 @@ namespace ogli
 			for (unsigned int i = 0; i < texte.length(); i++)
 			{
 
-				vertex_up_left = vec2(i*size, size);
-				vertex_up_right = vec2(i*size + size, size);
-				vertex_down_right = vec2(i*size + size, 0);
-				vertex_down_left = vec2(i*size, 0);
+				vertex_up_left = vec2(i*sizex, size);
+				vertex_up_right = vec2(i*sizex + sizex, size);
+				vertex_down_right = vec2(i*sizex + sizex, 0);
+				vertex_down_left = vec2(i*sizex, 0);
 
 				push_vec2(vertices, vertex_up_left);
 				push_vec2(vertices, vertex_down_left);
@@ -249,6 +178,7 @@ namespace ogli
 	protected:
 		vector<float> tcoord;
 		vector<float> vertices;
+
 
 		void push_vec2(vector<float> & vec, glm::vec2 v2)
 		{

@@ -16,31 +16,14 @@
 
 #include <SDL.h>
 #include <iostream>
-#include "SceneOpenGL.h"
+#include "msys.h"
 
 
 int main(int argc, char **argv)
 {
-	// Création de la sène
+	msys * MainEngine = new msys();
 
-	SceneOpenGL scene("OpenGL", 1280, 720);
-
-	EnvLua * env = new EnvLua();
-
-
-	// Initialisation de la scène
-
-	if (scene.initialiserFenetre() == false)
-		return -1;
-
-	if (scene.initGL() == false)
-		return -1;
-
-
-	// Boucle Principale
-
-	scene.bouclePrincipale();
-
+	MainEngine->mainsys();
 
 	// Fin du programme
 

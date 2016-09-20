@@ -19,3 +19,6 @@ int gen::Executeur<T>::exec(string nfonc, lua_State * L)
 
 	return sblElement::exec(nfonc, L);
 }*/
+
+gen_PhyData * dt_mainsys;
+gen_ScreenData * screen_data;
