@@ -27,7 +27,7 @@ end
 
 function callback()
  x, y = sbl_get('coord')
- sbl_set('coord', x+y+0.01, y-x, 0.1)
+ sbl_set('coord', x+y+0.01, y-x, 0.5)
  sbl_exec('charger')
 end
 
@@ -46,6 +46,7 @@ blutin_nadr = sbl_create("blutin")
 sbl_charger(blutin_nadr)
 
 sbl_set('dim', 0.1, 0.1)
+sbl_set('coord', 0.2, 0, 0.5)
 sbl_exec('charger')
 sbl_exec('enregistrerFonc', 'onClic', 'callback')
 sbl_set('nom','testblutin')
@@ -57,9 +58,10 @@ sbl_fermer()
 texte_nadr = sbl_create('tlutin')
 sbl_charger(texte_nadr)
 
-sbl_set('dim', 0.5, 0.3)
-sbl_set('coord', -1, -1, 0.1)
+sbl_set('dim', 0.05, 0.3)
+sbl_set('coord', 0.1, 0, 0.05)
 sbl_exec('enregistrerFonc', 'onClic', 'tcallback')
+sbl_exec('link', blutin_nadr)
 sbl_set('nom','testtlutin')
 sbl_set('visible', 1)
 sbl_exec('charger')
@@ -71,8 +73,8 @@ sbl_exec('push', 'blutin', blutin_nadr)
 sbl_exec('push', 'tlutin', texte_nadr)
 
 sbl_charger(h_2D_nadr)
-sbl_exec('push', 'tlutin', texte_nadr)
 sbl_exec('push', 'blutin', blutin_nadr)
+sbl_exec('push', 'tlutin', texte_nadr)
 
 sbl_fermer(blutin_nadr)
 

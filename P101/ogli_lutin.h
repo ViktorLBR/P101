@@ -314,10 +314,12 @@ namespace ogli
 		virtual void link(BLutin * master)
 		{
 			this->master = master;
+			this->repere = master;
 		}
 		virtual void unlink()
 		{
 			master = NULL;
+			repere = NULL;
 		}
 
 		virtual void charger()
