@@ -29,6 +29,12 @@ int set(lua_State * L)
 	return hub_lua->set(L);
 }
 
+int print(lua_State * L)
+{
+	cout << "lua_print> " << lua_tostring(L, 1) << endl;
+	return 0;
+}
+
 // Exécute cible::get()
 int get(lua_State * L)
 {
@@ -65,4 +71,5 @@ void ChargerInterfaceHub(lua_State * L)
 	lua_register(L, "sbl_exec", exec);
 	lua_register(L, "sbl_create", create);
 	lua_register(L, "sbl_getnom", getnom);
+	lua_register(L, "sbl_print", print);
 }

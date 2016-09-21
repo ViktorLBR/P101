@@ -20,6 +20,11 @@ public:
 		luaL_dofile(etat, fichier.c_str());
 	}
 
+	void ExecS(string cmd)
+	{
+		luaL_dostring(etat, cmd.c_str());
+	}
+
 	lua_State * getEnv()
 	{
 		return etat;

@@ -2,6 +2,8 @@
 #include "Input.h"
 
 
+hub_sstream * h_sstream;
+
 // Constructeur et Destructeur
 
 Input::Input() : m_x(0), m_y(0), m_xRel(0), m_yRel(0), m_terminer(false)
@@ -16,12 +18,15 @@ Input::Input() : m_x(0), m_y(0), m_xRel(0), m_yRel(0), m_terminer(false)
 
     for(int i(0); i < 8; i++)
         m_boutonsSouris[i] = false;
+
+	h_sstream = new hub_sstream();
+	SDL_StartTextInput();
 }
 
 
 Input::~Input()
 {
-
+	SDL_StopTextInput();
 }
 
 
@@ -43,10 +48,19 @@ void Input::updateEvenements()
 
         switch(m_evenements.type)
         {
+			case SDL_TEXTINPUT:
+				h_sstream->set(m_evenements.text.text);
+			break;
+
             // Cas d'une touche enfoncée
 
             case SDL_KEYDOWN:
                 m_touches[m_evenements.key.keysym.scancode] = true;
+				if (m_evenements.key.keysym.scancode == SDL_SCANCODE_BACKSPACE)
+					h_sstream->set(hub_sstream::onBackspaceKey);
+				else
+					if (m_evenements.key.keysym.scancode == SDL_SCANCODE_RETURN)
+						h_sstream->set(hub_sstream::onEnterKey);
             break;
 
 

@@ -39,11 +39,6 @@
 
 class SceneOpenGL : public sblCElement
 {
-protected:
-
-	vector<gen::Element3D *> liste_affichage;
-	map<string, ogli::BLutin *> liste_2D;
-
 public:
 
     SceneOpenGL(std::string titreFenetre, int largeurFenetre, int hauteurFenetre);
@@ -54,6 +49,7 @@ public:
 
 	void get_engine(Input * hinput, ogli::hub_2D * h_2D, gen::hub_3D * h_3D, ogli::hub_Slot * h_slot, ogli::hub_TicInput * h_ticinput)
 	{
+		//SDL_GL_SetAttribute(SDL_GL_STENCILSIZE, 8);
 		this->input = hinput;
 		this->h_2D = h_2D;
 		this->h_3D = h_3D;
@@ -116,36 +112,6 @@ public:
         SDL_GL_SwapWindow(m_fenetre);
 	}
 
-	void pushdisp(gen::Element3D * p)
-	{
-		liste_affichage.push_back(p);
-	}
-
-	bool popdisp(gen::Element3D * p)
-	{
-		for (vector<gen::Element3D *>::iterator i = liste_affichage.begin(); i < liste_affichage.end(); i++)
-		{
-			if ((*i) == p)
-			{
-				liste_affichage.erase(i);
-				return true;
-			}
-		}
-		return false;
-	}
-
-	bool push2D(string nom, ogli::BLutin * p)
-	{
-		if (liste_2D.count(nom) != 0) return false;
-		liste_2D.emplace(nom, p);
-	}
-
-	bool pop2D(string nom)
-	{
-		if (liste_2D.count(nom) == 0) return false;
-		liste_2D.erase(nom);
-	}
-
 	virtual int set(string nvar, lua_State * L)
 	{
 
@@ -160,34 +126,6 @@ public:
 
 	virtual int exec(string nfonc, lua_State * L)
 	{
-		sblAdr nadr = lua_tonumber(L, 2);
-		if (nfonc == "pushdisp")
-		{
-			liste_affichage.push_back(sbl::convert<gen::Element3D>(hub_lua->getElement(nadr)));
-			return 0;
-		}
-		if (nfonc == "popdisp")
-		{
-			for (vector<gen::Element3D *>::iterator i = liste_affichage.begin(); i < liste_affichage.end(); i++)
-			{
-				if ((*i)->getNadr() == nadr)
-				{
-					liste_affichage.erase(i);
-					return 0;
-				}
-			}
-			return 0;
-		}
-		if (nfonc == "push2D")
-		{
-			push2D(lua_tostring(L, 2), sbl::convert<ogli::BLutin>(hub_lua->getnadr(lua_tonumber(L, 3))));
-			return 0;
-		}
-		if (nfonc == "pop2D")
-		{
-			pop2D(lua_tostring(L, 2));
-			return 0;
-		}
 
 		return sblCElement::exec(nfonc, L);
 	}

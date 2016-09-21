@@ -156,15 +156,13 @@ namespace ogli
 	class CoordRectangle2D : public primitif_Repere2D
 	{
 	public:
-
 		float tab[12];
 
 		CoordRectangle2D(primitif_Repere2D * master) : primitif_Repere2D(master)
 		{
-
 		}
 
-		void charger()
+		virtual void charger()
 		{
 			float buffer[] =
 			{
@@ -184,13 +182,76 @@ namespace ogli
 
 	protected:
 	};
+	/*class Calque : public primitif_Element2D
+	{
+	public:
+		primitif_Repere2D * t_Repere2D;
+		primitif_Repere2D * v_Repere2D;
+
+		virtual void charger()
+		{
+			primitif_Element2D::charger();
+			vertex_tab->dim = dim;
+
+			vertex_tab->charger();
+			texture_tab->charger();
+
+			v_tab = vertex_tab->tab;
+			t_tab = texture_tab->tab;
+		}
+
+		Calque()
+		{
+			t_Repere2D = new primitif_Repere2D(new vec3(0, 0, 0), new vec2(1, 1));
+			v_Repere2D = new primitif_Repere2D(new vec3(0, 0, 0), dim);
+
+			texture_tab = new CoordRectangle2D(t_Repere2D);
+			vertex_tab = new CoordRectangle2D(v_Repere2D);
+
+			texture = "DATA/Textures/alpha.png";
+			vertexShader = "DATA/Shaders/texture2Dp.vert";
+			fragmentShader = "DATA/Shaders/texture2Dp.frag";
+
+			v_tab = vertex_tab->tab;
+			t_tab = texture_tab->tab;
+		}
+
+		void afficher()
+		{
+			l_afficher();
+		}
+		void l_afficher()
+		{
+			glEnable(GL_STENCIL_TEST);
+
+			// Paramètres stencil
+			glStencilFunc(GL_ALWAYS, 1, 0xFF); // Set any stencil to 1
+			glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+			glStencilMask(0xFF); // Write to stencil buffer
+			glDepthMask(GL_FALSE); // Don't write to depth buffer
+
+			glDrawArrays(GL_TRIANGLES, 0, 6);
+
+			// Paramètres de base
+			glStencilFunc(GL_EQUAL, 1, 0xFF); // Pass test if stencil value is 1
+			glStencilMask(0x00); // Don't write anything to stencil buffer
+			glDepthMask(GL_TRUE); // Write to depth buffer
+
+			glDisable(GL_STENCIL_TEST);
+		}
+
+	protected:
+		CoordRectangle2D * vertex_tab, *texture_tab;
+	};*/
 
 	class BLutin : public primitif_TicInput, public primitif_Element2D
 	{
 	public:
 		bool in; // Vrai si le pointeur est sur le bouton
 		bool activate; // Vrai si le pointeur est activé
+		bool action_actif;
 		bool visible;
+		bool calque;
 
 		primitif_Repere2D * t_Repere2D;
 		primitif_Repere2D * v_Repere2D;
@@ -199,6 +260,11 @@ namespace ogli
 
 		virtual int set(string nvar, lua_State * L)
 		{
+			if (nvar == "action_actif")
+			{
+				action_actif = lua_toboolean(L, 2);
+				return 0;
+			}
 			if (nvar == "visible")
 			{
 				visible = lua_toboolean(L, 2);
@@ -242,6 +308,11 @@ namespace ogli
 		}
 		virtual int get(string nvar, lua_State * L)
 		{
+			if (nvar == "action_actif")
+			{
+				sbl::sbl_push(L, action_actif);
+				return 1;
+			}
 			if (nvar == "visible")
 			{
 				sbl::sbl_push(L, visible);
@@ -351,6 +422,8 @@ namespace ogli
 			coord = new vec3(0, 0, 0);
 			visible = false;
 			activate = false;
+			action_actif = true;
+			calque = true;
 			in = false;
 		}
 
@@ -362,6 +435,9 @@ namespace ogli
 		{
 			if (visible)
 			{
+				if (calque == true)
+					;
+
 				data_evgl();
 				glDrawArrays(GL_TRIANGLES, 0, 6);
 				data_lib();
@@ -370,6 +446,8 @@ namespace ogli
 
 		virtual void tic(Input &input)
 		{
+			if (!action_actif)
+				return;
 			if (input.rectPointeurGL(vec2(coord->x, coord->y), *dim))
 			{
 				if (in == false)
@@ -449,6 +527,12 @@ namespace ogli
 		{
 			p->afficher();
 		}
+	};
+
+	class RLutin : public BLutin, public hub_2D
+	{
+	public:
+		
 	};
 };
 

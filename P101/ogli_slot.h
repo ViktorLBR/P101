@@ -125,7 +125,7 @@ namespace ogli
 
 		virtual void inChange()
 		{
-			sblCElement::execFonction("inStable");
+			sblCElement::execFonction("inChange");
 		}
 		virtual void inStable()
 		{

@@ -1,80 +1,9 @@
-﻿Build started 20/09/2016 18:34:28.
+﻿Build started 21/09/2016 12:47:48.
      1>Project "E:\Projets GitHub\P101\P101\P101.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\P101.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
-         stdafx.cpp
-     1>e:\projets github\p101\p101\ogli_slot.h(72): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>e:\projets github\p101\p101\ogli_lutin.h(204): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>e:\projets github\p101\p101\ogli_lutin.h(224): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\ogli_lutin.h(229): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\ogli_lutin.h(230): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\ogli_lutin.h(235): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\ogli_lutin.h(236): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\ogli_lutin.h(237): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\ogli_lutin.h(303): warning C4244: 'initializing' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
-     1>e:\projets github\p101\p101\ogli_texte2d.h(64): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\gen_3delement.h(78): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\gen_3delement.h(79): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\gen_3delement.h(80): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\gen_3delement.h(85): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\gen_3delement.h(86): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\gen_3delement.h(87): warning C4244: '=' : conversion from 'lua_Number' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\map.h(46): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>e:\projets github\p101\p101\map.h(47): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>e:\projets github\p101\p101\map.h(48): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>e:\projets github\p101\p101\map.h(56): warning C4244: 'argument' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
-     1>e:\projets github\p101\p101\input_hard.h(8): warning C4584: 'lalt_slot' : base-class 'ogli::primitif_TicInput' is already a base-class of 'ogli::b_Slot'
-                 e:\projets github\p101\p101\ogli_slot.h(12) : see declaration of 'ogli::primitif_TicInput'
-                 e:\projets github\p101\p101\ogli_slot.h(117) : see declaration of 'ogli::b_Slot'
-     1>e:\projets github\p101\p101\sceneopengl.h(163): warning C4244: 'initializing' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
-     1>e:\projets github\p101\p101\sceneopengl.h(183): warning C4244: 'argument' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
-     1>e:\projets github\p101\p101\gen_boost.h(17): warning C4244: 'initializing' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
-                 e:\projets github\p101\p101\gen_boost.h(15) : while compiling class template member function 'int gen::Executeur<ogli::primitif_Slot>::exec(std::string,lua_State *)'
-                 e:\projets github\p101\p101\ogli_slot.h(166) : see reference to class template instantiation 'gen::Executeur<ogli::primitif_Slot>' being compiled
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\P101.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Caisse.cpp Camera.cpp Cube.cpp Input.cpp "P101 (moteur).cpp" SceneOpenGL.cpp Shader.cpp Texture.cpp gen_boost.cpp sbl_boost.cpp sbl_element.cpp sbl_env.cpp sbl_hub.cpp sbl_interface_hub.cpp sbl_main.cpp
-         sbl_main.cpp
-         sbl_interface_hub.cpp
-         sbl_hub.cpp
-     1>e:\projets github\p101\p101\sbl_hub.cpp(53): warning C4244: 'initializing' : conversion from 'lua_Number' to 'sblAdr', possible loss of data
-         sbl_env.cpp
-         sbl_element.cpp
-         sbl_boost.cpp
-         gen_boost.cpp
-         Texture.cpp
-         Shader.cpp
-         SceneOpenGL.cpp
-         P101 (moteur).cpp
-         Input.cpp
-         Cube.cpp
-         Camera.cpp
-     1>e:\projets github\p101\p101\camera.cpp(55): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\camera.cpp(56): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\camera.cpp(214): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>e:\projets github\p101\p101\camera.cpp(215): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-         Caisse.cpp
-         Generating Code...
-     1>e:\projets github\p101\p101\sceneopengl.h(141): warning C4715: 'SceneOpenGL::push2D' : not all control paths return a value
-     1>e:\projets github\p101\p101\sceneopengl.h(147): warning C4715: 'SceneOpenGL::pop2D' : not all control paths return a value
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Projets GitHub\P101\Debug\P101.exe" /INCREMENTAL /NOLOGO /LIBPATH:.\lib lua53.lib SDL2.lib SDL2main.lib SDL2test.lib SDL2_image.lib glew32s.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Projets GitHub\P101\Debug\P101.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Projets GitHub\P101\Debug\P101.lib" /MACHINE:X86 Debug\Caisse.obj
-         Debug\Camera.obj
-         Debug\Cube.obj
-         Debug\gen_boost.obj
-         Debug\Input.obj
-         "Debug\P101 (moteur).obj"
-         Debug\sbl_boost.obj
-         Debug\sbl_element.obj
-         Debug\sbl_env.obj
-         Debug\sbl_hub.obj
-         Debug\sbl_interface_hub.obj
-         Debug\sbl_main.obj
-         Debug\SceneOpenGL.obj
-         Debug\Shader.obj
-         Debug\stdafx.obj
-         Debug\Texture.obj
+     1>Link:
          P101.vcxproj -> E:\Projets GitHub\P101\Debug\P101.exe
      1>Done Building Project "E:\Projets GitHub\P101\P101\P101.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.71
+Time Elapsed 00:00:00.26

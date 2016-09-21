@@ -12,12 +12,99 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 using namespace glm;
+using namespace std;
 
 // Classe
 
+class sstream_c
+{
+protected:
+	bool fin;
+
+public:
+	string input;
+
+	bool get_fin()
+	{
+		return fin;
+	}
+
+	sstream_c()
+	{
+		input = "";
+		fin = false;
+	}
+
+	virtual void onString(string s)
+	{
+		if (fin)
+			return;
+		input += s;
+	}
+
+	virtual void onBackspaceKey()
+	{
+		if (fin)
+			return;
+		if (input.length() > 0)
+			input = input.substr(0, input.length() - 1);
+	}
+
+	virtual void onEnterKey()
+	{
+		if (fin)
+			return;
+		fin = true;
+	}
+};
+
+class hub_sstream : public gen::Executeur < sstream_c >
+{
+public:
+	enum ev { onString, onBackspaceKey, onEnterKey} sstream_event;
+	bool auto_ex;
+	string s;
+
+	void set(string ns)
+	{
+		s = ns;
+		sstream_event = onString;
+		if (auto_ex)
+			this->actualiser();
+	}
+	void set(ev nev)
+	{
+		s = "";
+		sstream_event = nev;
+		if (auto_ex)
+			this->actualiser();
+	}
+
+	hub_sstream()
+	{
+		nom = "hub_sstream";
+		auto_ex = true;
+	}
+
+	virtual void operation(sstream_c * p)
+	{
+		if (sstream_event == onString)
+			p->onString(s);
+		else
+			if (sstream_event == onBackspaceKey)
+				p->onBackspaceKey();
+			else
+				if (sstream_event == onEnterKey)
+					p->onEnterKey();
+	}
+};
+
+extern hub_sstream * h_sstream;
+
 class Input
 {
-    public:
+public:
+
 
     Input();
     ~Input();
@@ -92,7 +179,7 @@ class Input
 
 	int x_window, y_window;
 
-    private:
+private:
 
     SDL_Event m_evenements;
     bool m_touches[SDL_NUM_SCANCODES];
@@ -105,7 +192,6 @@ class Input
 
     bool m_terminer;
 };
-
 
 #endif
 

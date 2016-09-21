@@ -54,6 +54,7 @@ bool SceneOpenGL::initialiserFenetre()
 
     // Création de la fenêtre
 
+	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
     m_fenetre = SDL_CreateWindow(m_titreFenetre.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_largeurFenetre, m_hauteurFenetre, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 
     if(m_fenetre == 0)

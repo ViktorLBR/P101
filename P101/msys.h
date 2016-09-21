@@ -62,6 +62,9 @@ public:
 		tlutin->fragmentShader = "DATA/Shaders/texture2Dp.frag";
 		hub_lua->lib_ajouter("tlutin", tlutin);
 
+		cmd_s = new cmd_slot(h_2D, input);
+		h_slot.push("cmd_s", cmd_s);
+		h_ticinput.push("cmd_s", cmd_s);
 
 		// LUA
 		env->Exec("config.lua");
@@ -93,7 +96,7 @@ protected:
 	ogli::hub_2D h_2D;
 	gen::hub_3D h_3D;
 
-	EnvLua * env;
+	cmd_slot * cmd_s;
 
 	Input input;
 	SceneOpenGL * scene_opengl;
